@@ -57,72 +57,17 @@
             </div>
 
             <nav class="sidebar-nav">
-                <div class="nav-group">
-                    <h4>Introduction</h4>
-                    <a href="#what-is-html" class="active">What is HTML?</a>
-                    <a href="#history">History of HTML</a>
-                    <a href="#editors">Code Editors</a>
-                </div>
-
-                <div class="nav-group">
-                    <h4>Elements</h4>
-                    <a href="#structure">Basic Structure</a>
-                    <a href="#headings">Headings & Paragraphs</a>
-                    <a href="#links">Links & Images</a>
-                    <a href="#lists">Lists (UL/OL)</a>
-                </div>
-
-                <div class="nav-group">
-                    <h4>Attributes</h4>
-                    <a href="#classes">Classes & IDs</a>
-                    <a href="#styles">Inline Styles</a>
-                    <a href="#forms">Forms & Inputs</a>
-                </div>
+                
             </nav>
         </aside>
 
         <main class="doc-content">
-            <article>
-                <h1 id="what-is-html">What is HTML?</h1>
-                <p>HTML stands for Hyper Text Markup Language. It is the standard markup language for creating Web
-                    pages.</p>
+            <article id="doc-article"></article>
 
-                <div class="code-block">
-    <button class="copy-btn" aria-label="Copy code">
-        <span class="copy-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-        </span>
-        <span class="check-icon" style="display: none;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-        </span>
-    </button>
-    
-    <pre>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
-    &lt;h1&gt;My First Heading&lt;/h1&gt;
-    &lt;p&gt;My first paragraph.&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;</pre>
-</div>
-
-                <hr class="divider">
-
-                <h2 id="structure">Basic Structure</h2>
-                <p>Every HTML document consists of tags (elements). The basic structure includes the doctype, html,
-                    head, and body tags.</p>
-                <p>Here is a breakdown of the essential components needed to build a web page.</p>
-
-                <h2 id="headings">Headings</h2>
-                <p>HTML headings are defined with the &lt;h1&gt; to &lt;h6&gt; tags.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua.</p>
-
-                <h2 id="links">Links</h2>
-                <p>Links are defined with the &lt;a&gt; tag.</p>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.</p>
-            </article>
+            <div class="doc-navigation">
+                <button id="prevBtn">&larr; Previous</button>
+                <button id="nextBtn">Next &rarr;</button>
+            </div>
         </main>
 
     </div>
@@ -211,6 +156,7 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/html.js"></script>
 </body>
 
 </html>

@@ -79,6 +79,7 @@ window.addEventListener('resize', () => {
         document.body.style.overflow = 'auto';
     }
 });
+
 /* --- DOCS SIDEBAR LOGIC --- */
 const sidebarToggle = document.getElementById('sidebar-toggle');
 const sidebarClose = document.getElementById('sidebar-close');

@@ -57,179 +57,17 @@
             </div>
 
             <nav class="sidebar-nav">
-                <div class="nav-group">
-                    <h4>Introduction</h4>
-                    <a href="#what-is-css" class="active">What is CSS?</a>
-                    <a href="#how-css-works">How CSS Works</a>
-                    <a href="#css-syntax">CSS Syntax</a>
-                </div>
-
-                <div class="nav-group">
-                    <h4>Core Concepts</h4>
-                    <a href="#selectors">Selectors</a>
-                    <a href="#box-model">Box Model</a>
-                    <a href="#colors-units">Colors & Units</a>
-                    <a href="#specificity">Specificity</a>
-                </div>
-
-                <div class="nav-group">
-                    <h4>Layout</h4>
-                    <a href="#display">Display</a>
-                    <a href="#flexbox">Flexbox</a>
-                    <a href="#grid">Grid</a>
-                </div>
+                
             </nav>
         </aside>
 
         <main class="doc-content">
-            <article>
+            <article id="doc-article"></article>
 
-                <h1 id="what-is-css">What is CSS?</h1>
-                <p>
-                    CSS (Cascading Style Sheets) controls how HTML elements look on the screen.
-                    It handles layout, colors, spacing, fonts, and responsiveness.
-                </p>
-
-                <div class="code-block">
-                    <button class="copy-btn" aria-label="Copy code">
-                        <span class="copy-icon">📋</span>
-                        <span class="check-icon" style="display:none;">✔</span>
-                    </button>
-
-                    <pre>
-h1 {
-    color: red;
-    font-size: 32px;
-}
-</pre>
-                </div>
-
-                <hr class="divider">
-
-                <h2 id="how-css-works">How CSS Works</h2>
-                <p>
-                    CSS follows three core rules: cascade, specificity, and inheritance.
-                    When multiple styles apply, the browser decides which one wins.
-                </p>
-
-                <pre>
-p {
-    color: blue;
-}
-
-.text {
-    color: green;
-}
-</pre>
-
-                <h2 id="css-syntax">CSS Syntax</h2>
-                <p>
-                    CSS is written as <strong>selector + property + value</strong>.
-                </p>
-
-                <pre>
-selector {
-    property: value;
-}
-</pre>
-
-                <h2 id="selectors">Selectors</h2>
-                <p>
-                    Selectors define which HTML elements the styles apply to.
-                </p>
-
-                <pre>
-/* Element */
-p {}
-
-/* Class */
-.card {}
-
-/* ID */
-#header {}
-</pre>
-
-                <h2 id="box-model">Box Model</h2>
-                <p>
-                    Every element is a rectangular box consisting of content, padding,
-                    border, and margin. Misunderstanding this causes 80% of layout bugs.
-                </p>
-
-                <pre>
-.box {
-    width: 200px;
-    padding: 16px;
-    border: 2px solid black;
-    margin: 12px;
-}
-</pre>
-
-                <h2 id="colors-units">Colors & Units</h2>
-                <p>
-                    CSS supports multiple color formats and measurement units.
-                    Avoid magic numbers; use relative units.
-                </p>
-
-                <pre>
-body {
-    color: #333;
-    font-size: 1rem;
-    width: 80%;
-}
-</pre>
-
-                <h2 id="specificity">Specificity</h2>
-                <p>
-                    Specificity decides which rule overrides another.
-                    Inline styles &gt; IDs &gt; Classes &gt; Elements.
-                </p>
-
-                <pre>
-#title { color: red; }
-.title { color: blue; }
-h1 { color: green; }
-</pre>
-
-                <h2 id="display">Display</h2>
-                <p>
-                    The display property controls how elements behave in the layout.
-                </p>
-
-                <pre>
-span {
-    display: inline-block;
-}
-</pre>
-
-                <h2 id="flexbox">Flexbox</h2>
-                <p>
-                    Flexbox is a one-dimensional layout system designed for alignment.
-                    Use it for navbars, cards, and centering.
-                </p>
-
-                <pre>
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-</pre>
-
-                <h2 id="grid">Grid</h2>
-                <p>
-                    CSS Grid is a two-dimensional layout system for complex layouts.
-                    Use it for full page structures.
-                </p>
-
-                <pre>
-.layout {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    gap: 16px;
-}
-</pre>
-
-            </article>
+            <div class="doc-navigation">
+                <button id="prevBtn">&larr; Previous</button>
+                <button id="nextBtn">Next &rarr;</button>
+            </div>
         </main>
 
 
@@ -319,6 +157,7 @@ span {
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/css.js"></script>
 </body>
 
 </html>

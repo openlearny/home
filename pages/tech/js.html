@@ -49,150 +49,27 @@
     </div>
 
     <div class="container doc-layout">
-
         <aside class="doc-sidebar" id="doc-sidebar">
             <div class="sidebar-header">
-                <h3>JavaScript Basics</h3>
+                <h3>JavaScript</h3>
                 <button id="sidebar-close" class="close-sidebar-btn">&times;</button>
             </div>
 
             <nav class="sidebar-nav">
                 <div class="nav-group">
-                    <h4>Introduction</h4>
-                    <a href="#what-is-js" class="active">What is JavaScript?</a>
-                    <a href="#history">History of JavaScript</a>
-                    <a href="#where-used">Where JS Runs</a>
-                </div>
-
-                <div class="nav-group">
-                    <h4>Core Concepts</h4>
-                    <a href="#variables">Variables</a>
-                    <a href="#datatypes">Data Types</a>
-                    <a href="#operators">Operators</a>
-                    <a href="#conditions">Conditions</a>
-                </div>
-
-                <div class="nav-group">
-                    <h4>Functions</h4>
-                    <a href="#functions">Functions</a>
-                    <a href="#arrow">Arrow Functions</a>
-                    <a href="#scope">Scope</a>
                 </div>
             </nav>
         </aside>
-
-
         <main class="doc-content">
-            <article>
+            <article id="doc-article"></article>
 
-                <h1 id="what-is-js">What is JavaScript?</h1>
-                <p>
-                    JavaScript is a programming language used to make web pages interactive.
-                    It allows you to respond to user actions, manipulate HTML and CSS, and build
-                    full applications.
-                </p>
-                <h2>"Hello World" Program in Server Console</h2>
-
-                <div class="code-block">
-                    <button class="copy-btn" aria-label="Copy code">
-                        <span class="copy-icon">📋</span>
-                        <span class="check-icon" style="display:none;">✔</span>
-                    </button>
-
-                    <pre>
-console.log("Hello, JavaScript!");
-</pre>
-                </div>
-
-                <hr class="divider">
-
-                <h2 id="variables">Variables</h2>
-                <p>
-                    Variables are used to store data. JavaScript provides <code>var</code>,
-                    <code>let</code>, and <code>const</code>.
-                </p>
-
-                <pre>
-let age = 21;
-const name = "Shobhit";
-</pre>
-
-                <h2 id="datatypes">Data Types</h2>
-                <p>
-                    JavaScript supports primitive and non-primitive data types.
-                </p>
-
-                <pre>
-let number = 10;        // Number
-let text = "Hello";    // String
-let isActive = true;   // Boolean
-let user = { name: "A" }; // Object
-</pre>
-
-                <h2 id="operators">Operators</h2>
-                <p>
-                    Operators are used to perform operations like addition, comparison,
-                    and logical checks.
-                </p>
-
-                <pre>
-let sum = 10 + 5;
-let isEqual = (10 === "10"); // false
-</pre>
-
-                <h2 id="conditions">Conditional Statements</h2>
-                <p>
-                    Conditional statements control decision-making in JavaScript.
-                </p>
-
-                <pre>
-if (age >= 18) {
-    console.log("Eligible to vote");
-} else {
-    console.log("Not eligible");
-}
-</pre>
-
-                <h2 id="functions">Functions</h2>
-                <p>
-                    Functions allow you to reuse logic and organize code.
-                </p>
-
-                <pre>
-function greet(name) {
-    return "Hello " + name;
-}
-</pre>
-
-                <h2 id="arrow">Arrow Functions</h2>
-                <p>
-                    Arrow functions provide a shorter syntax for writing functions.
-                </p>
-
-                <pre>
-const greet = (name) => {
-    return `Hello ${name}`;
-};
-</pre>
-
-                <h2 id="scope">Scope</h2>
-                <p>
-                    Scope determines where variables can be accessed.
-                    <code>let</code> and <code>const</code> are block-scoped.
-                </p>
-
-                <pre>
-{
-    let x = 10;
-}
-// x is NOT accessible here
-</pre>
-
-            </article>
+            <div class="doc-navigation">
+                <button id="prevBtn">&larr; Previous</button>
+                <button id="nextBtn">Next &rarr;</button>
+            </div>
         </main>
-
-
     </div>
+
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
     <footer class="site-footer">
@@ -278,6 +155,7 @@ const greet = (name) => {
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/js.js"></script>
 </body>
 
 </html>
