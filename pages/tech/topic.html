@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn JS</title>
+    <title>Learn HTML</title>
     <link rel="icon" type="image/svg+xml" href="assets/openlearnyWhiteLogo.svg" media="(prefers-color-scheme: dark)">
     <link rel="icon" type="image/svg+xml" href="assets/openlearnyDarkLogo.svg" media="(prefers-color-scheme: light)">
     <link rel="stylesheet" href="css/style.css">
@@ -15,10 +15,12 @@
     <header class="site-header">
 
         <nav>
-            <div class="logo">
-                <div id="theme-logo" class="logo"></div>
-                OpenLearny
-            </div>
+            <a href="../../index.html">
+                <div class="logo">
+                    <div id="theme-logo" class="logo"></div>
+                    OpenLearny
+                </div>
+            </a>
             <button class="menu-toggle" aria-label="Toggle navigation">
                 <span></span>
                 <span></span>
@@ -26,7 +28,7 @@
             </button>
             <ul class="nav-links">
 
-                <li><a href="../../index.html">Home</a></li>
+                <!-- <li><a href="../../index.html">Home</a></li> -->
                 <li><a href="../learn.html">Learn</a></li>
                 <!-- <li><a href="#">Roadmap</a></li> -->
                 <li>
@@ -49,17 +51,18 @@
     </div>
 
     <div class="container doc-layout">
+
         <aside class="doc-sidebar" id="doc-sidebar">
             <div class="sidebar-header">
-                <h3>JavaScript</h3>
+                <h3>HTML Basics</h3>
                 <button id="sidebar-close" class="close-sidebar-btn">&times;</button>
             </div>
 
             <nav class="sidebar-nav">
-                <div class="nav-group">
-                </div>
+                
             </nav>
         </aside>
+
         <main class="doc-content">
             <article id="doc-article"></article>
 
@@ -68,8 +71,8 @@
                 <button id="nextBtn">Next &rarr;</button>
             </div>
         </main>
-    </div>
 
+    </div>
     <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
     <footer class="site-footer">
@@ -155,7 +158,8 @@
     </footer>
 
     <script src="js/script.js"></script>
-    <script src="js/js.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/topic.js"></script>
 </body>
 
 </html>

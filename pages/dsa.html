@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master DSA - OpenLearny</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/openlearnyWhiteLogo.svg" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/svg+xml" href="../assets/openlearnyDarkLogo.svg" media="(prefers-color-scheme: light)">
+    <link rel="stylesheet" href="css/learn.css">
+</head>
+
+<body>
+
+    <header class="site-header">
+
+        <nav>
+            <a href="../index.html">
+                <div class="logo">
+                    <img id="theme-logo" alt="OpenLearny Logo" width="32" height="32" />
+                    OpenLearny
+                </div>
+            </a>
+            <button class="menu-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+
+                <li><a href="learn.html">Learn</a></li>
+                <!-- <li><a href="learn.html">DSA Roadmap</a></li> -->
+                <li>
+                    <button id="theme-toggle" aria-label="Switch theme">
+                        ☀
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="learn-hero">
+            <div class="container">
+                <h1 class="learn-title">Data Structures & Algorithms</h1>
+
+                <p class="learn-subtitle">
+                    From foundational structures to optimized problem solving patterns.
+                </p>
+            </div>
+        </section>
+        <section class="section-pad">
+            <div class="container">
+                <div class="grid-4">
+
+                    <a href="#DataStructures" class="domain-card">
+                        <div class="card-content">
+                            <div class="card-top">
+                                <div class="domain-icon">DS</div>
+                                <span class="status-badge status-active">Foundations</span>
+                            </div>
+                            <h3>Data Structures</h3>
+                            <p class="card-desc">
+                                "What exists?" Basics, Linear, Trees, Graphs, and Hash-based structures.
+                            </p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Explore Topics</span>
+                            <span class="arrow">&darr;</span>
+                        </div>
+                    </a>
+
+                    <a href="#Algorithms" class="domain-card">
+                        <div class="card-content">
+                            <div class="card-top">
+                                <div class="domain-icon">ALGO</div>
+                                <span class="status-badge status-active">Logic</span>
+                            </div>
+                            <h3>Algorithms</h3>
+                            <p class="card-desc">
+                                "How do we process?" Sorting, Searching, DP, Greedy, and Recursion patterns.
+                            </p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Explore Topics</span>
+                            <span class="arrow">&darr;</span>
+                        </div>
+                    </a>
+
+                    <a href="#Problems" class="domain-card">
+                        <div class="card-content">
+                            <div class="card-top">
+                                <div class="domain-icon">PROB</div>
+                                <span class="status-badge status-active">Practice</span>
+                            </div>
+                            <h3>Problem Solving</h3>
+                            <p class="card-desc">
+                                "How do I practice?" Categorized by pattern, difficulty, and platform metadata.
+                            </p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Solving</span>
+                            <span class="arrow">&darr;</span>
+                        </div>
+                    </a>
+
+                    <a href="#Resources" class="domain-card">
+                        <div class="card-content">
+                            <div class="card-top">
+                                <div class="domain-icon">RES</div>
+                                <span class="status-badge status-active">Extras</span>
+                            </div>
+                            <h3>Resources</h3>
+                            <p class="card-desc">
+                                Sheets, blogs, video playlists, and interview preparation strategies.
+                            </p>
+                        </div>
+                        <div class="topic-action">
+                            <span>View Resources</span>
+                            <span class="arrow">&darr;</span>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+        <div class="section-divider"></div>
+        <section class="section-pad">
+            <div class="container">
+
+                <div class="section-header" id="DataStructures">
+                    <h2 class="section-title">Data Structure Concepts</h2>
+                    <p class="section-subtitle">Pure foundations. Understanding storage and complexity.</p>
+                </div>
+
+                <div class="grid-4">
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/stack.png" alt="Stack Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Basics & Linear</h3>
+                            <p class="topic-purpose">Arrays, Linked Lists (Singly/Doubly), Stacks, and Queues.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Learning</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/hashtag-large.png" alt="Hash Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Hashing</h3>
+                            <p class="topic-purpose">Hash Tables, Collisions, Maps, and Sets.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Learning</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/tree-structure.png" alt="Tree Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Trees & Heaps</h3>
+                            <p class="topic-purpose">BST, AVL, Min/Max Heaps, Tries, and Segment Trees.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Learning</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/mind-map.png" alt="Graph Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Graphs</h3>
+                            <p class="topic-purpose">Representation (Adj List/Matrix), Cyclic/Acyclic, Weighted.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Learning</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card card-disabled">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/?size=100&id=lSXsn9erua8J&format=png&color=000000"
+                                        alt="Graph Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Advanced & Specialized Structures</h3>
+                            <p class="topic-purpose">Disjoint Set Union Sparse Tables, Skip List, LRU Cache Bloom Filter
+                            </p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Learning</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+                </div>
+
+
+                <div class="block-spacer"></div>
+
+
+                <div class="section-header" id="Algorithms">
+                    <h2 class="section-title">Algorithms</h2>
+                    <p class="section-subtitle">Processing data through recognized patterns.</p>
+                </div>
+
+                <div class="grid-4">
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/search--v1.png" alt="Search Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Searching Algos</h3>
+                            <p class="topic-purpose">Linear, Binary, Binary on Answer, and Ternary Search.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Learning</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/generic-sorting-2.png" alt="Sorting Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Sorting Algos</h3>
+                            <p class="topic-purpose">Bubble, Merge, Quick, Heap, Radix, Bucket Sort, and Stability.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Learning</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/cursor.png" alt="Two Pointers Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Two Pointers</h3>
+                            <p class="topic-purpose">Opposite Direction, Same Direction, Fast & Slow Pointers.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Learning</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/resize-horizontal.png"
+                                        alt="Sliding Window Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Sliding Window</h3>
+                            <p class="topic-purpose">Fixed/Variable Window and Window with Frequency Count.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Learning</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/synchronize.png" alt="Recursion Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Recursion & Backtracking</h3>
+                            <p class="topic-purpose">Stack Analysis, Subsets, N-Queens, and Sudoku Solver.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Learning</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/split.png" alt="Divide and Conquer Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Divide & Conquer</h3>
+                            <p class="topic-purpose">Merge Sort, Quick Sort, and Binary Search Variants.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Learning</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/trophy.png" alt="Greedy Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Greedy Algos</h3>
+                            <p class="topic-purpose">Activity Selection, Huffman Encoding, and Job Sequencing.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Learning</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/?size=100&id=13542&format=png&color=000000"
+                                        alt="DP Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Dynamic Programming</h3>
+                            <p class="topic-purpose">1D/2D DP, Knapsack, LIS, LCS, MCM, Trees, Grids, and Bitmask.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Learning</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/waypoint-map.png" alt="Graph Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Graph Algos</h3>
+                            <p class="topic-purpose">BFS/DFS, Dijkstra, MST (Prim/Kruskal), SCC, and Bridges.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Learning</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/abc.png" alt="String Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>String Algos</h3>
+                            <p class="topic-purpose">KMP, Rabin-Karp, Z-Algo, and Trie-Based Searching.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Learning</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/binary-file.png"
+                                        alt="Bit Manipulation Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Bit Manipulation</h3>
+                            <p class="topic-purpose">XOR, Set/Clear Bits, Power of Two, and Subsets.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Learning</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+                </div>
+
+
+                <div class="block-spacer"></div>
+
+
+                <div class="section-header" id="Problems">
+                    <h2 class="section-title">Practice Problems</h2>
+                    <p class="section-subtitle">A step-by-step roadmap from Arrays to DP.</p>
+                </div>
+
+                <div class="grid-4">
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/data-sheet.png" alt="Arrays Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Arrays</h3>
+                            <p class="topic-purpose">Easy &rarr; Med &rarr; Hard. The base of almost everything.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Solving</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/lowercase.png" alt="Strings Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Strings</h3>
+                            <p class="topic-purpose">Basic & Medium. Specialized arrays; solve immediately after arrays.
+                            </p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Solving</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/synchronize.png" alt="Recursion Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Recursion</h3>
+                            <p class="topic-purpose">PatternWise. Mandatory before trees, backtracking, and DP.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Solving</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/memory-slot.png"
+                                        alt="Bit Manipulation Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Bit Manipulation</h3>
+                            <p class="topic-purpose">Concepts & Problems. Needs recursion + math thinking.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Solving</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/view-details.png"
+                                        alt="Binary Search Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Binary Search</h3>
+                            <p class="topic-purpose">1D, 2D Arrays & Search Space. Relies on array + recursion mindset.
+                            </p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Solving</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/horizontal-settings-mixer.png"
+                                        alt="Sliding Window Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Window & 2-Pointer</h3>
+                            <p class="topic-purpose">Combined Problems. Built on arrays + binary search intuition.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Solving</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/stack.png" alt="Stack Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Stack & Queues</h3>
+                            <p class="topic-purpose">Monotonic Stack & Implementation. Introduces vital logic.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Solving</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/chain-start.png" alt="Linked List Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Linked List</h3>
+                            <p class="topic-purpose">Single & Double LL. Pointer logic follows stack/queues best.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Solving</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/diamond.png" alt="Greedy Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Greedy Algos</h3>
+                            <p class="topic-purpose">Easy/Med/Hard. Decision-making based on intuition & sorting.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Solving</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/sorting-answers.png" alt="Heaps Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Heaps</h3>
+                            <p class="topic-purpose">Works best after greedy; many problems are greedy + heap combos.
+                            </p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Solving</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/?size=100&id=115231&format=png&color=00F100"
+                                        alt="Binary Tree Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Binary Trees</h3>
+                            <p class="topic-purpose">Traversals & Problems. Requires recursion + stack comfort.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Solving</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/sorting-options.png" alt="BST Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>BST</h3>
+                            <p class="topic-purpose">Concept & Problems. Special case; never do BST before BT.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Solving</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/tree-structure.png" alt="Trie Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Tries</h3>
+                            <p class="topic-purpose">Advanced structure. Needs recursion + bit/string understanding.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Solving</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/mind-map.png" alt="Graph Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Graphs</h3>
+                            <p class="topic-purpose">Concepts & Problems. DFS/BFS relies on recursion & stacks.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Solving</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/strategy-board.png" alt="DP Icon">
+                                </span>
+                                <span class="status-dot status-live" title="Active"></span>
+                            </div>
+                            <h3>Dynamic Programming</h3>
+                            <p class="topic-purpose">Patterns & Problems. The Final Boss; requires full mindset.</p>
+                        </div>
+                        <div class="topic-action">
+                            <span>Start Solving</span>
+                            <span class="arrow">&rarr;</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="block-spacer"></div>
+
+                <div class="section-header" id="Resources">
+                    <h2 class="section-title">Resources</h2>
+                    <p class="section-subtitle">Sheets, blogs, and roadmaps.</p>
+                </div>
+
+                <div class="grid-4">
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card card-disabled">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/checklist.png" alt="Sheet Icon">
+                                </span>
+                                <span class="status-label">Planned</span>
+                            </div>
+                            <h3>DSA Sheets</h3>
+                            <p class="topic-purpose">Striver, Blind75, and Company-specific sheets.</p>
+                        </div>
+                    </a>
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card card-disabled">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/video.png" alt="Video Icon">
+                                </span>
+                                <span class="status-label">Planned</span>
+                            </div>
+                            <h3>Video & Blogs</h3>
+                            <p class="topic-purpose">Curated walkthroughs and optimization notes.</p>
+                        </div>
+                    </a>
+                    <a href="/pages/tech/dsapage.html?course=css" class="topic-card card-disabled">
+                        <div class="topic-content">
+                            <div class="topic-top">
+                                <span class="topic-icon">
+                                    <img src="https://img.icons8.com/color/96/trophy.png" alt="Trophy Icon">
+                                </span>
+                                <span class="status-label">Planned</span>
+                            </div>
+                            <h3>CP Roadmap</h3>
+                            <p class="topic-purpose">Codeforces/Codechef rating-based progression.</p>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+        <section class="section-pad philosophy-section">
+            <div class="container">
+                <p class="philosophy-text">
+                    Don't memorize the code.<br>
+                    Memorize the <strong>pattern</strong>.
+                </p>
+            </div>
+        </section>
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="footer-top">
+                <div class="footer-grid">
+
+                    <div class="footer-brand-col">
+                        <div class="footer-logo">
+                            <span>OpenLearny</span>
+                        </div>
+                        <p class="footer-desc">
+                            Democratizing DSA knowledge through structured, pattern-based learning.
+                        </p>
+
+                        <div class="social-links">
+                            <a href="https://github.com/OpenLearny" target="_blank" aria-label="GitHub">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                </svg>
+                            </a>
+                            <a href="https://x.com/openlearny" aria-label="Twitter">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                </svg>
+                            </a>
+                            <a href="https://www.youtube.com/@openlearny" aria-label="YouTube">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4>Platform</h4>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Learn</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Sheets</a></li>
+                            <li><a href="#">Patterns</a></li>
+                            <li><a href="#">Community</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 OpenLearny. Built by a student, for students.</p>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="js/learn.js"></script>
+</body>
+
+</html>
