@@ -39,8 +39,7 @@
         </nav>
     </header>
     <main>
-        
-        <canvas id="blackholeCanvas"></canvas>
+
         <section class="hero-section ">
             <div class="container">
                 <div class="hero-wrapper">
@@ -53,7 +52,52 @@
                         </p>
                         <div class="cta-group">
                             <a href="pages/learn.html" class="btn-primary">Start Learning</a>
-                            <!-- <a href="#" class="btn-secondary">Explore Roadmap →</a> -->
+                        </div>
+                    </div>
+
+                    <div class="blackhole-container">
+                        <canvas id="blackholeCanvas"></canvas>
+
+                        <div class="bh-controls">
+                            <button id="bh-settings-btn" aria-label="Black Hole Settings">
+                                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                                </svg>
+                            </button>
+
+                            <div id="bh-panel" class="bh-panel hidden">
+                                <h4>Event Horizon</h4>
+
+                                <div class="control-group">
+                                    <label>Speed</label>
+                                    <input type="range" id="ctrl-speed" min="0.001" max="0.1" step="0.001"
+                                        value="0.015">
+                                </div>
+
+                                <div class="control-group">
+                                    <label>Tilt</label>
+                                    <input type="range" id="ctrl-tilt" min="-1" max="1" step="0.1" value="0.8">
+                                </div>
+                                <div class="control-group">
+                                    <label>Disk Size</label>
+                                    <input type="range" id="ctrl-size" min="50" max="400" step="10" value="250">
+                                </div>
+                                <div class="control-group">
+                                    <label>Particle Count</label>
+                                    <input type="range" id="ctrl-count" min="100" max="2000" step="50" value="800">
+                                </div>
+
+                                <div class="control-group">
+                                    <label>Disk Color</label>
+                                    <input type="color" id="ctrl-color" value="#c8c8ff">
+                                </div>
+
+                                <div class="control-group">
+                                    <label>Glow Color</label>
+                                    <input type="color" id="ctrl-glow" value="#EBC077">
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -142,7 +186,7 @@
                     <p>Explore the four pillars of understanding.</p>
                 </div> -->
 
-                
+
             </div>
         </section>
         <section class="section-pad process-section">
