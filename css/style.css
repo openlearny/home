@@ -343,16 +343,6 @@ p {
    
 }
 
-#blackholeCanvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1; /* Base layer */
-     /* Slight transparency so it doesn't overpower the text */
-    pointer-events: none; /* Allows you to click text/buttons through the canvas */
-}
 
 /* IMPORTANT: Bring your content above the canvas */
 .hero-section .container {
@@ -368,12 +358,33 @@ p {
 
 .hero-wrapper {
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 4rem;
     margin-bottom: 1.5rem;
+    text-align: left;
+    
 }
-
+#blackholeCanvas {
+    /* This makes the disk "fixed" relative to the container, not the page */
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    /* We don't set fixed width/height here, JS handles resolution */
+}
+/* --- The Black Hole Anchor Div --- */
+.blackhole-container {
+    position: relative;
+    width: 100%;
+    height: 350px; /* Fixed height for the hole area on mobile */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
 /* --- TEXT STYLING (Left) --- */
 .hero-text {
     flex: 1;
@@ -422,16 +433,127 @@ p {
 .btn-secondary:hover::after {
     width: 100%;
 }
+/* --- Controls Container --- */
+.bh-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    /* --- ADDED PROPERTIES --- */
+    opacity: 0.085;               /* Invisible */
+    transform: translateY(-5px); /* Slightly moves it up */
+    pointer-events: none;     /* Prevents accidental clicks when hidden */
+    transition: all 0.3s ease; /* Smooth fade effect */
+}
 
+/* --- Settings Button --- */
+#bh-settings-btn {
+    background: var(--bg-accent);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#bh-settings-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+/* --- The Panel (Hidden by default) --- */
+.bh-panel {
+    margin-top: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    border-radius: 12px;
+    width: 200px;
+    color: #eee;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    
+    /* Animation basics */
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+.bh-panel.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+}
+
+/* --- Form Elements --- */
+.bh-panel h4 {
+    margin: 0 0 12px 0;
+    font-size: 0.9rem;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 5px;
+}
+
+.control-group {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.control-group label {
+    font-size: 0.8rem;
+    color: #ccc;
+}
+
+.control-group input[type="range"] {
+    width: 100%;
+    cursor: pointer;
+}
+
+.control-group input[type="color"] {
+    width: 100%;
+    height: 30px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* 2. Add this NEW rule to show it on Hover */
+.blackhole-container:hover .bh-controls {
+    opacity: 0.5;               /* Fully Visible */
+    transform: translateY(0); /* Moves to natural position */
+    pointer-events: auto;     /* Re-enable clicking */
+}
+
+/* 3. (Optional) Keep visible while interacting with the panel */
+/* This ensures the menu doesn't disappear while dragging a slider */
+.bh-controls:focus-within {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
 /* --- MOBILE RESPONSIVE --- */
 @media (max-width: 900px) {
     
 
     .hero-wrapper {
-        flex-direction: column;
+        flex-direction: column-reverse;
         text-align: center;
         gap: 2rem;
         margin-bottom: 10rem;
+        /* padding: 2rem 0; */
     }
 
     .hero-text {
