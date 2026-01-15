@@ -2,21 +2,37 @@
    1. DATA SELECTION LOGIC
    ========================================= */
 
-// Get the 'course' parameter from the URL (e.g., ?course=html)
 const urlParams = new URLSearchParams(window.location.search);
 const courseParam = urlParams.get('course');
 
-// Handle case where no course is selected
 if (!courseParam) {
-    document.body.innerHTML = "<h2 style='color:white; text-align:center; margin-top:50px;'>No Topic selected. Please select a Topic from the learn.</h2>";
-    throw new Error("No course parameter in URL");
+    document.body.innerHTML = "<h2 style='color:white; text-align:center; margin-top:50px;'>No Topic selected.</h2>";
+    throw new Error("No course parameter");
 }
 
-// Normalize the key (User types 'html', we need 'HTML' to match JSON key)
 const courseKey = courseParam.toUpperCase();
 
-// Select the specific course data from data.js
-const topics = data[courseKey];
+let topics = null;
+let currentDomainName = "";
+let currentDomainId = ""; // <--- NEW VARIABLE
+
+// Iterate over data keys ("webcore", "dsa")
+for (const domainKey in data) {
+    const domainObj = data[domainKey];
+
+    if (domainObj.topics && domainObj.topics[courseKey]) {
+        topics = domainObj.topics[courseKey];
+        currentDomainName = domainObj.domain;
+        currentDomainId = domainKey; // <--- CAPTURE THE ID HERE (e.g., "webcore")
+        break;
+    }
+}
+
+if (!topics) {
+    document.body.innerHTML = `<h2 style='color:white; text-align:center;'>Topic "${courseKey}" not found.</h2>`;
+    throw new Error("Course not found");
+}
+// --- NEW SEARCH LOGIC ENDS HERE ---
 
 // Verify data exists
 if (!topics) {
@@ -41,9 +57,20 @@ const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
 
 // --- NEW CODE STARTS HERE ---
-const sidebarTitle = document.querySelector(".sidebar-header h3"); // Select the H3
+// 1. Select the Anchor and the H3
+const sidebarHeaderLink = document.querySelector(".sidebar-header a"); 
+const sidebarTitle = document.querySelector(".sidebar-header h3");
+
+// 2. Update the Title Text
 if (sidebarTitle) {
-    sidebarTitle.textContent = `${courseKey} Basics`; // Updates text to "HTML Basics" or "CSS Basics"
+    document.title = `${courseKey} | ${currentDomainName}`;
+    sidebarTitle.innerHTML = `<span style="font-size:0.6em; display:block; opacity:0.7">${currentDomainName}</span> ${courseKey}`;
+}
+
+// 3. Update the Link Href
+if (sidebarHeaderLink && currentDomainId) {
+    // Sets href to "webcore.html", "dsa.html", etc.
+    sidebarHeaderLink.href = `../${currentDomainId}.html`; 
 }
 // --- NEW CODE ENDS HERE ---
 

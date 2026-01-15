@@ -96,7 +96,7 @@ function resize() {
     ctx.scale(dpr, dpr);
 
     if (window.innerWidth > 768) {
-        centerX = width * 0.65;
+        centerX = width * 0.5;
         centerY = height * 0.50;
         CONFIG.blackHoleRadius = 85;
         CONFIG.diskRadiusMin = 100;
@@ -150,7 +150,7 @@ class DiskParticle {
         this.angle = Math.random() * Math.PI * 2;
         this.radius = CONFIG.diskRadiusMin + Math.random() * (CONFIG.diskRadiusMax - CONFIG.diskRadiusMin);
         this.speed = CONFIG.diskSpeed + Math.random() * 0.005;
-        this.color = Math.random() > 0.8 ? '255, 255, 255' : CONFIG.diskColor;
+        this.color =  CONFIG.diskColor;
     }
 
     update() {
