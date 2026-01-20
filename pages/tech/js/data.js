@@ -1551,6 +1551,676 @@ const data = {
     "dsa": {
         domain: "Data Structures",
         topics: {
+            "SORTING ALGORITHMS":{
+              "Introduction":[
+                {
+id: "sorting-algorithms",
+title: "Sorting Algorithms",
+content: `
+
+<h1>Sorting Algorithms</h1>
+<p>Sorting algorithms are procedures used to rearrange elements of a data structure (array/list) in a specific order, usually ascending or descending, based on a comparison key.</p>
+
+<h3>Why sorting matters:</h3>
+<ul>
+  <li>Enables binary search</li>
+  <li>Improves data readability</li>
+  <li>Critical for efficient algorithms (scheduling, greedy, interval problems)</li>
+  <li>Many problems are unsolvable or inefficient without sorting</li>
+</ul>
+
+<h3>List of All Major Sorting Algorithms</h3>
+
+<h3>Comparison-Based Sorting</h3>
+<ol>
+  <li>Bubble Sort</li>
+  <li>Selection Sort</li>
+  <li>Insertion Sort</li>
+  <li>Merge Sort</li>
+  <li>Quick Sort</li>
+  <li>Heap Sort</li>
+</ol>
+
+<h3>Non-Comparison-Based Sorting</h3>
+<ol start="7">
+  <li>Counting Sort</li>
+  <li>Radix Sort</li>
+  <li>Bucket Sort</li>
+</ol>
+
+<h3>Comparison Table</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Algorithm</th>
+      <th>Best Time</th>
+      <th>Average Time</th>
+      <th>Worst Time</th>
+      <th>Space</th>
+      <th>Stable</th>
+      <th>In-place</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Bubble Sort</td>
+      <td>O(n)</td>
+      <td>O(n²)</td>
+      <td>O(n²)</td>
+      <td>O(1)</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Selection Sort</td>
+      <td>O(n²)</td>
+      <td>O(n²)</td>
+      <td>O(n²)</td>
+      <td>O(1)</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Insertion Sort</td>
+      <td>O(n)</td>
+      <td>O(n²)</td>
+      <td>O(n²)</td>
+      <td>O(1)</td>
+      <td>✅</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Merge Sort</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(n)</td>
+      <td>✅</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td>Quick Sort</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(n²)</td>
+      <td>O(log n)</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Heap Sort</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(n log n)</td>
+      <td>O(1)</td>
+      <td>❌</td>
+      <td>✅</td>
+    </tr>
+    <tr>
+      <td>Counting Sort</td>
+      <td>O(n+k)</td>
+      <td>O(n+k)</td>
+      <td>O(n+k)</td>
+      <td>O(k)</td>
+      <td>✅</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td>Radix Sort</td>
+      <td>O(d(n+k))</td>
+      <td>O(d(n+k))</td>
+      <td>O(d(n+k))</td>
+      <td>O(n+k)</td>
+      <td>✅</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td>Bucket Sort</td>
+      <td>O(n+k)</td>
+      <td>O(n+k)</td>
+      <td>O(n²)</td>
+      <td>O(n)</td>
+      <td>Depends</td>
+      <td>❌</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>1. Bubble Sort</h3>
+<ul>
+  <li>Repeatedly swap adjacent elements if they are in wrong order</li>
+  <li>Largest element “bubbles” to the end</li>
+  <li>Adaptive (best case O(n) with swap flag)</li>
+</ul>
+<p>Reality check:</p>
+<p>Used only for teaching. Using it in real systems is stupid.</p>
+
+<h3>2. Selection Sort</h3>
+<ul>
+  <li>Select minimum element and place it at correct position</li>
+  <li>Number of swaps is minimal</li>
+</ul>
+<p>Key point:</p>
+<p>Not stable. Time complexity is always O(n²), no matter what.</p>
+
+<h3>3. Insertion Sort</h3>
+<ul>
+  <li>Insert each element into its correct position in sorted part</li>
+  <li>Works like sorting playing cards</li>
+</ul>
+<p>When it shines:</p>
+<ul>
+  <li>Nearly sorted arrays</li>
+  <li>Small input sizes</li>
+</ul>
+
+<h3>4. Merge Sort</h3>
+<ul>
+  <li>Divide array into halves</li>
+  <li>Sort each half recursively</li>
+  <li>Merge sorted halves</li>
+</ul>
+<p>Strengths:</p>
+<ul>
+  <li>Guaranteed O(n log n)</li>
+  <li>Stable</li>
+</ul>
+<p>Weakness:</p>
+<p>Extra memory usage</p>
+
+<h3>5. Quick Sort</h3>
+<ul>
+  <li>Choose a pivot</li>
+  <li>Partition elements around pivot</li>
+  <li>Recursively sort partitions</li>
+</ul>
+<p>Truth most people miss:</p>
+<ul>
+  <li>Fast in practice</li>
+  <li>Worst case happens with bad pivot selection</li>
+</ul>
+<p>Used internally in many standard libraries (with safeguards).</p>
+
+<h3>6. Heap Sort</h3>
+<ul>
+  <li>Build a max heap</li>
+  <li>Repeatedly extract maximum</li>
+</ul>
+<p>Key traits:</p>
+<ul>
+  <li>In-place</li>
+  <li>No worst-case degradation</li>
+</ul>
+<p>Downside:</p>
+<p>Not stable and slower than Quick Sort in practice.</p>
+
+<h3>7. Counting Sort</h3>
+<ul>
+  <li>Count frequency of each element</li>
+  <li>Prefix sum to place elements</li>
+</ul>
+<p>Condition:</p>
+<p>Works only when range of elements is small</p>
+<p>No comparisons → not comparison-based.</p>
+
+<h3>8. Radix Sort</h3>
+<ul>
+  <li>Sort digit by digit (LSD or MSD)</li>
+  <li>Uses Counting Sort internally</li>
+</ul>
+<p>Used when:</p>
+<ul>
+  <li>Sorting integers or fixed-length strings</li>
+</ul>
+
+<h3>9. Bucket Sort</h3>
+<ul>
+  <li>Distribute elements into buckets</li>
+  <li>Sort each bucket individually</li>
+</ul>
+<p>Works best when:</p>
+<ul>
+  <li>Data is uniformly distributed</li>
+</ul>
+<p>Worst case can degrade badly.</p>
+`
+}
+
+
+              ]
+            },
+
+            "SEARCHING ALGORITHMS":{
+              "Introduction":[
+                {
+id: "searching-algorithms",
+title: "Searching Algorithms",
+content: `
+
+<h1>Searching Algorithms</h1>
+<p>Searching algorithms are techniques used to locate a target element (key) in a data structure such as an array, list, or file, and return its position or existence.</p>
+<p>Searching is not about finding only — it’s about finding efficiently under given constraints (sorted/unsorted, size, access type).</p>
+
+<h3>List of Searching Algorithms</h3>
+
+<h3>Basic Searching</h3>
+<ol>
+  <li>Linear Search</li>
+  <li>Binary Search</li>
+</ol>
+
+<h3>Advanced / Special-Case Searching</h3>
+<ol start="3">
+  <li>Jump Search</li>
+  <li>Interpolation Search</li>
+  <li>Exponential Search</li>
+  <li>Fibonacci Search</li>
+</ol>
+
+<h3>Non-Comparison / Direct Access</h3>
+<ol start="7">
+  <li>Hashing (Hash Table Search)</li>
+</ol>
+
+<h3>Comparison Table of Searching Algorithms</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Algorithm</th>
+      <th>Data Must Be Sorted</th>
+      <th>Best Time</th>
+      <th>Average Time</th>
+      <th>Worst Time</th>
+      <th>Space</th>
+      <th>Practical Use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Linear Search</td>
+      <td>❌</td>
+      <td>O(1)</td>
+      <td>O(n)</td>
+      <td>O(n)</td>
+      <td>O(1)</td>
+      <td>✔ (small data)</td>
+    </tr>
+    <tr>
+      <td>Binary Search</td>
+      <td>✅</td>
+      <td>O(1)</td>
+      <td>O(log n)</td>
+      <td>O(log n)</td>
+      <td>O(1)</td>
+      <td>✔✔✔</td>
+    </tr>
+    <tr>
+      <td>Jump Search</td>
+      <td>✅</td>
+      <td>O(√n)</td>
+      <td>O(√n)</td>
+      <td>O(√n)</td>
+      <td>O(1)</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td>Interpolation Search</td>
+      <td>✅</td>
+      <td>O(log log n)</td>
+      <td>O(log log n)</td>
+      <td>O(n)</td>
+      <td>O(1)</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td>Exponential Search</td>
+      <td>✅</td>
+      <td>O(1)</td>
+      <td>O(log n)</td>
+      <td>O(log n)</td>
+      <td>O(1)</td>
+      <td>✔</td>
+    </tr>
+    <tr>
+      <td>Fibonacci Search</td>
+      <td>✅</td>
+      <td>O(log n)</td>
+      <td>O(log n)</td>
+      <td>O(log n)</td>
+      <td>O(1)</td>
+      <td>❌</td>
+    </tr>
+    <tr>
+      <td>Hashing</td>
+      <td>❌</td>
+      <td>O(1)</td>
+      <td>O(1)</td>
+      <td>O(n)</td>
+      <td>O(n)</td>
+      <td>✔✔</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>1. Linear Search</h3>
+<ul>
+  <li>Check elements one by one</li>
+  <li>No sorting required</li>
+  <li>Works on arrays and linked lists</li>
+</ul>
+<p>Only acceptable for small or unsorted data.</p>
+
+<h3>2. Binary Search</h3>
+<ul>
+  <li>Repeatedly halves the search space</li>
+  <li>Requires sorted data</li>
+  <li>Uses mid element comparison</li>
+</ul>
+<p>Binary Search on unsorted data is logically wrong, not inefficient.</p>
+
+<h3>3. Jump Search</h3>
+<ul>
+  <li>Jump ahead by fixed steps (√n)</li>
+  <li>Then do linear search in that block</li>
+  <li>Requires sorted data</li>
+</ul>
+<p>Academic algorithm. Rare in real systems.</p>
+
+<h3>4. Interpolation Search</h3>
+<ul>
+  <li>Predicts position using value distribution</li>
+  <li>Faster than Binary Search for uniform data</li>
+</ul>
+<p>Performance collapses if data isn’t uniformly distributed.</p>
+
+<h3>5. Exponential Search</h3>
+<ul>
+  <li>Finds range by doubling index size</li>
+  <li>Applies Binary Search in that range</li>
+</ul>
+<p>Used when Array size is unknown or infinite.</p>
+
+<h3>6. Fibonacci Search</h3>
+<ul>
+  <li>Uses Fibonacci numbers instead of mid</li>
+  <li>Reduces comparisons</li>
+</ul>
+<p>Mostly exam-oriented, not industry-used.</p>
+
+<h3>7. Hashing (Hash Table Search)</h3>
+<ul>
+  <li>Computes index using hash function</li>
+  <li>Direct access to element</li>
+</ul>
+<p>Trade-off:</p>
+<p>Speed vs memory + collision handling.</p>
+`
+}
+
+              ],
+              "Linear Search":[
+                {
+id: "linear-search",
+title: "Linear Search",
+content: `
+
+<h1>Linear Search</h1>
+<p>Linear Search scans elements one by one from start to end until the target is found or the collection ends. It exists because it works on unsorted data and requires no preprocessing, at the cost of speed.</p>
+
+<h3>When to Use:</h3>
+<ul>
+  <li>Data is unsorted</li>
+  <li>Dataset is very small</li>
+  <li>Single or very few searches</li>
+  <li>Simplicity matters more than performance</li>
+  <li>Data structure allows only sequential access (linked list)</li>
+</ul>
+
+<h3>Step-by-Step Logic:</h3>
+<ul>
+  <li>Start from index 0</li>
+  <li>Compare current element with target</li>
+  <li>If match found, return index</li>
+  <li>Move to next element</li>
+  <li>If end is reached, return not found</li>
+</ul>
+
+<h3>Example:</h3>
+<p>Array: [4, 2, 9, 1], target = 9</p>
+<ul>
+  <li>Compare 4 → no</li>
+  <li>Compare 2 → no</li>
+  <li>Compare 9 → found at index 2</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(n) worst & average, O(1) best</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>Common Pitfalls:</h3>
+<ul>
+  <li>Using it on large datasets blindly</li>
+  <li>Forgetting worst-case cost is always O(n)</li>
+  <li>Expecting early exit when target doesn’t exist</li>
+  <li>Re-running linear search repeatedly instead of sorting once</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>int linearSearch(vector&lt;int&gt;&amp; arr, int target) {
+    for (int i = 0; i &lt; arr.size(); i++) {
+        if (arr[i] == target) return i;
+    }
+    return -1;
+}</pre>
+</div>
+
+<p>if your data is sorted and you still use linear search, you’re wasting time—yours and the CPU’s. Use it only when constraints force you to.</p>
+`
+},
+
+
+              ],
+              "Binary Search":[
+                {
+id: "binary-search",
+title: "Binary Search",
+content: `
+
+<h1>Binary Search</h1>
+<p>Binary Search is a divide-and-conquer algorithm that repeatedly halves the search space to locate a target in a sorted array. It exists to reduce search time from linear to logarithmic by exploiting order. If the data isn’t sorted, this algorithm is invalid—no exceptions.</p>
+
+<h3>When to Use:</h3>
+<ul>
+  <li>Array or range is sorted (or monotonic condition holds)</li>
+  <li>Random access is available (arrays, not linked lists)</li>
+  <li>Constraints demand O(log n) time</li>
+  <li>Problems asking for first/last occurrence, bounds, or feasibility</li>
+  <li>“Minimum / maximum possible value” with a yes/no check (binary search on answer)</li>
+</ul>
+
+<h3>Step-by-Step Logic:</h3>
+<ul>
+  <li>Initialize low = 0, high = n − 1</li>
+  <li>While low ≤ high</li>
+  <li>Compute mid safely</li>
+  <li>Compare mid element with target</li>
+  <li>Eliminate half of the search space</li>
+  <li>Repeat until found or range becomes invalid</li>
+</ul>
+
+<h3>Example:</h3>
+<p>Array: [1, 3, 5, 7, 9], target = 7</p>
+<ul>
+  <li>mid = 5 → too small → move right</li>
+  <li>mid = 7 → match → found</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(log n)</li>
+  <li>Space: O(1) iterative, O(log n) recursive</li>
+</ul>
+
+<h3>Common Pitfalls:</h3>
+<ul>
+  <li>Using it on unsorted data (logical bug, not syntax)</li>
+  <li>Infinite loops due to wrong boundary updates</li>
+  <li>Overflow in mid = (l + r) / 2</li>
+  <li>Confusing &lt; vs &lt;= in loop condition</li>
+  <li>Breaking correctness with duplicates</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>int binarySearch(vector&lt;int&gt;&amp; arr, int target) {
+    int l = 0, r = arr.size() - 1;
+    while (l &lt;= r) {
+        int mid = l + (r - l) / 2;
+        if (arr[mid] == target) return mid;
+        if (arr[mid] &lt; target) l = mid + 1;
+        else r = mid - 1;
+    }
+    return -1;
+}</pre>
+</div>
+
+<p>binary search isn’t “easy.” Most wrong answers come from bad boundaries, not bad logic. If you can’t prove your loop invariants, you don’t understand it yet.</p>
+`
+},
+{
+id: "lower-bound-and-upper-bound",
+title: "Lower Bound and Upper Bound",
+content: `
+
+<h1>Lower Bound and Upper Bound</h1>
+
+<h2>Lower Bound</h2>
+<p>Lower Bound finds the first index where the value is greater than or equal to the target in a sorted array. This is a binary-search variant used to determine insertion position without breaking order. If the array isn’t sorted, the result is meaningless.</p>
+
+<h3>When to Use:</h3>
+<ul>
+  <li>Finding insertion index in sorted data</li>
+  <li>Counting occurrences of an element</li>
+  <li>Range-based problems</li>
+  <li>Coordinate compression</li>
+  <li>Any problem involving duplicates + binary search</li>
+</ul>
+
+<h3>Step-by-Step Logic:</h3>
+<ul>
+  <li>Initialize l = 0, r = n</li>
+  <li>While l &lt; r</li>
+  <li>Compute mid safely</li>
+  <li>If arr[mid] &lt; target, discard left half</li>
+  <li>Else, discard right half</li>
+  <li>l ends at first index where arr[l] ≥ target</li>
+</ul>
+
+<h3>Example:</h3>
+<p>Array: [1, 2, 2, 2, 4, 5], target = 2</p>
+<ul>
+  <li>mid → comparisons shrink range</li>
+  <li>Final l = 1 → correct lower bound</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(log n)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>Common Pitfalls:</h3>
+<ul>
+  <li>Using r = n - 1 instead of n</li>
+  <li>Writing while (l &lt;= r) and breaking invariants</li>
+  <li>Mixing &lt; and &lt;= incorrectly</li>
+  <li>Assuming target must exist</li>
+  <li>Applying on unsorted array</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>int lowerBound(vector&lt;int&gt;&amp; arr, int target) {
+    int l = 0, r = arr.size();
+    while (l &lt; r) {
+        int mid = l + (r - l) / 2;
+        if (arr[mid] &lt; target)
+            l = mid + 1;
+        else
+            r = mid;
+    }
+    return l;
+}</pre>
+</div>
+
+<h2>Upper Bound</h2>
+<p>Upper Bound finds the first index where the value is strictly greater than the target in a sorted array. It’s a binary-search variant used to skip all occurrences of the target. If the array isn’t sorted, this is logically invalid.</p>
+
+<h3>When to Use:</h3>
+<ul>
+  <li>Counting frequency of an element (upper - lower)</li>
+  <li>Finding insertion point after all duplicates</li>
+  <li>Range queries with duplicates</li>
+  <li>Coordinate compression</li>
+  <li>Any “strictly greater than” boundary problem</li>
+</ul>
+
+<h3>Step-by-Step Logic:</h3>
+<ul>
+  <li>Initialize l = 0, r = n</li>
+  <li>While l &lt; r</li>
+  <li>Compute mid safely</li>
+  <li>If arr[mid] &lt;= target, discard left half</li>
+  <li>Else, discard right half</li>
+  <li>l ends at first index where arr[l] &gt; target</li>
+</ul>
+
+<h3>Example:</h3>
+<p>Array: [1, 2, 2, 2, 4, 5], target = 2</p>
+<ul>
+  <li>Lower Bound → 1</li>
+  <li>Upper Bound → 4</li>
+  <li>All 2s lie in [1, 4)</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(log n)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>Common Pitfalls:</h3>
+<ul>
+  <li>Using &lt; target instead of &lt;= target</li>
+  <li>Setting r = n - 1 and breaking correctness</li>
+  <li>Writing while (l &lt;= r) and causing infinite loops</li>
+  <li>Assuming returned index always exists in array</li>
+  <li>Applying on unsorted data</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>int upperBound(vector&lt;int&gt;&amp; arr, int target) {
+    int l = 0, r = arr.size();
+    while (l &lt; r) {
+        int mid = l + (r - l) / 2;
+        if (arr[mid] &lt;= target)
+            l = mid + 1;
+        else
+            r = mid;
+    }
+    return l;
+}</pre>
+</div>
+`
+}
+
+              ]
+            },
+
             "ARRAYS PROBLEMS":{
       "Easy" : [
         {
@@ -1753,13 +2423,811 @@ public:
   <li>Greedy works because earliest start dominates later choices</li>
 </ul>
 `
+},
+{
+id: "152-maximum-product-subarray",
+title: "152. Maximum Product Subarray",
+content: `
+
+<h1>152. Maximum Product Subarray</h1>
+<p>Find the contiguous subarray within an array that has the largest product.</p>
+
+<h2>Approach (Prefix–Suffix Product Scan):</h2>
+<ul>
+  <li>Maintain running product from left to right (prefix)</li>
+  <li>Maintain running product from right to left (suffix)</li>
+  <li>Reset product to 1 when it becomes zero</li>
+  <li>At each index, take maximum of prefix and suffix</li>
+  <li>Handles negative numbers implicitly via reverse traversal</li>
+</ul>
+
+<h3>Complexity:</h3>
+<p>Time: O(n)</p>
+<p>Space: O(1)</p>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int maxProduct(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        long long prefix = 1, suffix = 1;
+        int ans = INT_MIN;
+
+    for (int i = 0; i &lt; n; i++) {
+        prefix = (prefix == 0 ? 1 : prefix) * nums[i];
+        suffix = (suffix == 0 ? 1 : suffix) * nums[n - 1 - i];
+        ans = max(ans, (int)max(prefix, suffix));
+    }
+    return ans;
+}
+
+};</pre>
+
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Traverses array once while computing prefix and suffix products</li>
+  <li>Resets product when zero breaks continuity</li>
+  <li>Considers both directions to handle odd negative counts</li>
+  <li>Updates maximum product at every step</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li>Single-direction scan fails when negatives count is odd</li>
+  <li>Zero must reset product, otherwise future values corrupt</li>
+  <li>Prefix–suffix avoids explicit min tracking</li>
+  <li>Works even when maximum subarray lies at the end</li>
+  <li>INT_MIN initialization is necessary for all-negative arrays</li>
+</ul>
+
+<h2>Approach (Dynamic Programming with Max–Min Tracking):</h2>
+<ul>
+  <li>Track both maximum and minimum product ending at current index</li>
+  <li>Negative numbers can flip max ↔ min, so store previous values</li>
+  <li>Reset product tracking when encountering zero</li>
+  <li>Update global maximum at each step</li>
+  <li>Single pass solution</li>
+</ul>
+
+<h3>Complexity:</h3>
+<p>Time: O(n)</p>
+<p>Space: O(1)</p>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int maxProduct(vector&lt;int&gt;&amp; nums) {
+        int maxProd = nums[0], minProd = nums[0], ans = nums[0];
+
+    for (int i = 1; i &lt; nums.size(); i++) {
+        int cur = nums[i];
+        int prevMax = maxProd, prevMin = minProd;
+
+        maxProd = max({cur, prevMax * cur, prevMin * cur});
+        minProd = min({cur, prevMax * cur, prevMin * cur});
+
+        ans = max(ans, maxProd);
+    }
+    return ans;
+}
+
+
+};</pre>
+
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Initializes max and min products with first element</li>
+  <li>Stores previous max and min before updating</li>
+  <li>Computes new max and min including current element</li>
+  <li>Updates global answer at every index</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li>Tracking only max fails for negative numbers</li>
+  <li>Zero breaks subarrays; logic must allow reset</li>
+  <li>Initializing with nums[0] avoids extra conditions</li>
+  <li>Order of updates matters; store previous values</li>
+  <li>Works even when all numbers are negative</li>
+</ul>
+`
+}
+
+      ],
+      "Hard":[
+        {
+id: "493-reverse-pairs",
+title: "493. Reverse Pairs",
+content: `
+
+<h1>493. Reverse Pairs</h1>
+<p>Count the number of pairs ((i, j)) such that (i &lt; j) and (nums[i] &gt; 2 × nums[j]).</p>
+
+<h3>Approach (Modified Merge Sort):</h3>
+<ul>
+  <li>Split the array using divide-and-conquer</li>
+  <li>Count reverse pairs between left and right halves before merging</li>
+  <li>Use two pointers where right pointer moves monotonically</li>
+  <li>Merge two sorted halves using a temporary array</li>
+  <li>Maintain sorted order for higher recursion levels</li>
+</ul>
+
+<h3>Complexity:</h3>
+<p>Time: O(n log n)</p>
+<p>Space: O(n)</p>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int mergeSort(vector&lt;int&gt;&amp; nums, int l, int r) {
+        if (l &gt;= r) return 0;
+
+
+    int mid = l + (r - l) / 2;
+    int cnt = mergeSort(nums, l, mid) + mergeSort(nums, mid + 1, r);
+
+    int j = mid + 1;
+    for (int i = l; i &lt;= mid; i++) {
+        while (j &lt;= r &amp;&amp; (long long)nums[i] &gt; 2LL * nums[j]) j++;
+        cnt += (j - (mid + 1));
+    }
+
+    vector&lt;int&gt; temp;
+    int i = l;
+    j = mid + 1;
+
+    while (i &lt;= mid &amp;&amp; j &lt;= r) {
+        if (nums[i] &lt;= nums[j]) temp.push_back(nums[i++]);
+        else temp.push_back(nums[j++]);
+    }
+
+    while (i &lt;= mid) temp.push_back(nums[i++]);
+    while (j &lt;= r) temp.push_back(nums[j++]);
+
+    for (int k = 0; k &lt; temp.size(); k++) {
+        nums[l + k] = temp[k];
+    }
+
+    return cnt;
+}
+
+int reversePairs(vector&lt;int&gt;&amp; nums) {
+    return mergeSort(nums, 0, nums.size() - 1);
+}
+
+
+};</pre>
+
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Recursively divides the array into sorted halves</li>
+  <li>Counts valid reverse pairs using two pointers across halves</li>
+  <li>Uses a temporary array to merge two sorted subarrays</li>
+  <li>Copies merged result back to original array</li>
+  <li>Returns accumulated count from all merge steps</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li>Never reset pointer j inside left loop</li>
+  <li>long long is mandatory to avoid overflow</li>
+  <li>Counting must happen before merging</li>
+  <li>Negative values still satisfy the condition correctly</li>
+  <li>Incorrect merge logic breaks future pair counts</li>
+</ul>
+`
+},
+
+      ]
+            },
+
+            "BINARY SEARCH PROBLEMS":{
+              "Easy":[
+                {
+id: "704-binary-search",
+title: "704. Binary Search",
+content: `
+
+<h1>704. Binary Search</h1>
+<p>Search for a target value in a sorted array and return its index, or −1 if not found.</p>
+
+<h3>Approach (Iterative Binary Search):</h3>
+<ul>
+  <li>Works only on a sorted array</li>
+  <li>Maintain two pointers l and r defining search space</li>
+  <li>Compute mid safely to avoid overflow</li>
+  <li>Discard half of the array each iteration</li>
+  <li>Continue until target is found or range becomes empty</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(log n)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int search(vector&lt;int&gt;&amp; nums, int target) {
+        int l = 0, r = nums.size() - 1;
+        while (l &lt;= r) {
+            int mid = l + (r - l) / 2;
+            if (nums[mid] == target) return mid;
+            if (nums[mid] &lt; target) l = mid + 1;
+            else r = mid - 1;
+        }
+        return -1;
+    }
+};</pre>
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Initializes search boundaries on full array</li>
+  <li>Computes mid index without overflow</li>
+  <li>Narrows search space based on comparison</li>
+  <li>Returns index immediately when found</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li>Array must be sorted, no exceptions</li>
+  <li>Use l &lt;= r, not l &lt; r</li>
+  <li>Mid calculation (l + r) / 2 can overflow</li>
+  <li>Works for single-element arrays</li>
+  <li>Returns −1 when target doesn’t exist</li>
+</ul>
+
+<p>binary search is simple only on paper. Most wrong answers come from bad boundaries, not bad logic. If you mess up l, r, or mid, the algorithm collapses.</p>
+`
+},
+{
+id: "35-search-insert-position",
+title: "35. Search Insert Position",
+content: `
+
+<h1>35. Search Insert Position</h1>
+<p>Find the index where the target should be inserted in a sorted array to maintain order.</p>
+
+<h3>Approach (Binary Search – Lower Bound):</h3>
+<ul>
+  <li>Array is already sorted</li>
+  <li>Maintain search space with l and r</li>
+  <li>Look for first position where value ≥ target</li>
+  <li>Shrink right when mid ≥ target</li>
+  <li>Final l is the insertion index</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(log n)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int searchInsert(vector&lt;int&gt;&amp; nums, int target) {
+        int l = 0, r = nums.size() - 1;
+        while (l &lt;= r) {
+            int mid = l + (r - l) / 2;
+            if (nums[mid] &gt;= target)
+                r = mid - 1;
+            else
+                l = mid + 1;
+        }
+        return l;
+    }
+};</pre>
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Uses binary search to locate lower bound</li>
+  <li>Moves right boundary when mid can be an answer</li>
+  <li>Moves left boundary when mid is too small</li>
+  <li>Returns l as the correct insert position</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li>This is lower_bound, not plain binary search</li>
+  <li>Returning l works even if target is larger than all elements</li>
+  <li>Works for empty insertion at beginning or end</li>
+  <li>Using nums[mid] == target special-case is unnecessary</li>
+  <li>Most mistakes come from returning r instead of l</li>
+</ul>
+`
+}
+
+
+              ],
+              "Medium":[
+                {
+id: "34-find-first-and-last-position-of-element-in-sorted-array",
+title: "34. Find First and Last Position of Element in Sorted Array",
+content: `
+
+<h1>34. Find First and Last Position of Element in Sorted Array</h1>
+<p>Find the starting and ending position of a given target value in a sorted array.</p>
+
+<h3>Approach (Binary Search – Lower & Upper Bound):</h3>
+<ul>
+  <li>Use binary search to find first occurrence (lower bound)</li>
+  <li>Use binary search to find position just after last occurrence (upper bound)</li>
+  <li>Validate if target exists at lower bound</li>
+  <li>Compute last index as <code>upper − 1</code></li>
+  <li>Avoid linear scan completely</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(log n)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    vector&lt;int&gt; searchRange(vector&lt;int&gt;&amp; nums, int target) {
+        int n = nums.size();
+        int l = 0, r = n - 1, first = -1, last = -1;
+
+    // Find first occurrence
+    while (l &lt;= r) {
+        int mid = l + (r - l) / 2;
+        if (nums[mid] &gt;= target) r = mid - 1;
+        else l = mid + 1;
+    }
+    if (l == n || nums[l] != target) return {-1, -1};
+    first = l;
+
+    // Find last occurrence
+    l = 0; r = n - 1;
+    while (l &lt;= r) {
+        int mid = l + (r - l) / 2;
+        if (nums[mid] &lt;= target) l = mid + 1;
+        else r = mid - 1;
+    }
+    last = r;
+
+    return {first, last};
+}
+
+};</pre>
+
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>First binary search finds the leftmost target index</li>
+  <li>Second binary search finds rightmost target index</li>
+  <li>Checks existence before computing range</li>
+  <li>Returns both indices in one pass logic</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li>This is pure lower_bound + upper_bound logic</li>
+  <li>If target doesn’t exist, return <code>[-1, -1]</code></li>
+  <li>Do not expand linearly after finding one index</li>
+  <li>Boundaries matter more than comparisons</li>
+  <li>Works for duplicates and single-element arrays</li>
+</ul>
+`
+},
+{
+id: "33-search-in-rotated-sorted-array",
+title: "33. Search in Rotated Sorted Array",
+content: `
+
+<h1>33. Search in Rotated Sorted Array</h1>
+<p>Search for a target in a rotated sorted array with no duplicates in O(log n) time.</p>
+
+<h3>Approach (Modified Binary Search):</h3>
+<ul>
+  <li>Use binary search with two pointers</li>
+  <li>Identify which half is sorted at each step</li>
+  <li>Check if target lies in the sorted half</li>
+  <li>Discard the unsorted half accordingly</li>
+  <li>Continue until found or search space exhausted</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(log n)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int search(vector&lt;int&gt;&amp; nums, int target) {
+        int l = 0, r = nums.size() - 1;
+        while (l &lt;= r) {
+            int mid = l + (r - l) / 2;
+            if (nums[mid] == target) return mid;
+
+
+        if (nums[l] &lt;= nums[mid]) {
+            if (nums[l] &lt;= target &amp;&amp; target &lt; nums[mid])
+                r = mid - 1;
+            else
+                l = mid + 1;
+        } else {
+            if (nums[mid] &lt; target &amp;&amp; target &lt;= nums[r])
+                l = mid + 1;
+            else
+                r = mid - 1;
+        }
+    }
+    return -1;
+}
+
+};</pre>
+
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Initialize binary search bounds</li>
+  <li>Compute mid index safely</li>
+  <li>Check if mid element is target</li>
+  <li>Detect which half is sorted</li>
+  <li>Narrow search to the valid half</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li>One half is always sorted</li>
+  <li>Wrong boundary checks cause WA</li>
+  <li>Must include equality in comparisons</li>
+  <li>Works only when no duplicates exist</li>
+</ul>
+`
+},
+{
+id: "81-search-in-rotated-sorted-array-ii",
+title: "81. Search in Rotated Sorted Array II",
+content: `
+
+<h1>81. Search in Rotated Sorted Array II</h1>
+<p>Search for a target in a rotated sorted array that may contain duplicates.</p>
+
+<h3>Approach (Modified Binary Search with Duplicate Handling):</h3>
+<ul>
+  <li>Use binary search with two pointers</li>
+  <li>If middle equals target, return true</li>
+  <li>When left, mid, and right are equal, shrink bounds</li>
+  <li>Otherwise detect the sorted half</li>
+  <li>Decide which half to discard based on target range</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(log n) average, O(n) worst-case</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    bool search(vector&lt;int&gt;&amp; nums, int target) {
+        int l = 0, r = nums.size() - 1;
+        while (l &lt;= r) {
+            int mid = l + (r - l) / 2;
+            if (nums[mid] == target) return true;
+
+        if (nums[l] == nums[mid] &amp;&amp; nums[mid] == nums[r]) {
+            l++;
+            r--;
+        } else if (nums[l] &lt;= nums[mid]) {
+            if (nums[l] &lt;= target &amp;&amp; target &lt; nums[mid])
+                r = mid - 1;
+            else
+                l = mid + 1;
+        } else {
+            if (nums[mid] &lt; target &amp;&amp; target &lt;= nums[r])
+                l = mid + 1;
+            else
+                r = mid - 1;
+        }
+    }
+    return false;
+}
+
+};</pre>
+
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Initialize binary search bounds</li>
+  <li>Return true if mid matches target</li>
+  <li>Shrink bounds when duplicates block ordering</li>
+  <li>Identify sorted half when possible</li>
+  <li>Move search to valid half</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li>Duplicates break strict O(log n) guarantee</li>
+  <li>nums[l] == nums[mid] == nums[r] is the critical case</li>
+  <li>Forgetting to shrink bounds causes infinite loop</li>
+  <li>Same logic as LC 33 once duplicates are skipped</li>
+</ul>
+`
+},
+{
+id: "153-find-minimum-in-rotated-sorted-array",
+title: "153. Find Minimum in Rotated Sorted Array",
+content: `
+
+<h1>153. Find Minimum in Rotated Sorted Array</h1>
+<p>Find the minimum element in a rotated sorted array with <strong>no duplicates</strong> in O(log n).</p>
+
+<h3>Approach (Binary Search on Rotation Point):</h3>
+<ul>
+  <li>Use binary search on the array</li>
+  <li>Compare mid with right to detect unsorted side</li>
+  <li>Minimum always lies in the unsorted half</li>
+  <li>Shrink search space toward the pivot</li>
+  <li>Stop when left meets right</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(log n)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int findMin(vector&lt;int&gt;&amp; nums) {
+        int l = 0, r = nums.size() - 1;
+        while (l &lt; r) {
+            int mid = l + (r - l) / 2;
+            if (nums[mid] &gt; nums[r])
+                l = mid + 1;
+            else
+                r = mid;
+        }
+        return nums[l];
+    }
+};</pre>
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Initialize search bounds</li>
+  <li>Compute mid safely</li>
+  <li>If mid is greater than right, minimum is on right side</li>
+  <li>Otherwise minimum lies on left including mid</li>
+  <li>Loop ends at minimum index</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li>Array is sorted except at rotation point</li>
+  <li>Comparing with <code>nums[r]</code> is crucial</li>
+  <li>Do not use <code>&lt;=</code> in loop condition</li>
+  <li>Works only when duplicates are not present</li>
+</ul>
+`
+},
+{
+id: "540-single-element-in-a-sorted-array",
+title: "540. Single Element in a Sorted Array",
+content: `
+
+<h1>540. Single Element in a Sorted Array</h1>
+<p>Find the single element in a sorted array where every other element appears exactly twice.</p>
+
+<h3>Approach (Binary Search on Index Parity):</h3>
+<ul>
+  <li>Use binary search on indices</li>
+  <li>Exploit pairing pattern around the single element</li>
+  <li>Ensure mid is even for valid pair checking</li>
+  <li>Compare mid with mid + 1 to detect broken pair</li>
+  <li>Narrow search to the side containing the single element</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(log n)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int singleNonDuplicate(vector&lt;int&gt;&amp; nums) {
+        int l = 0, r = nums.size() - 1;
+        while (l &lt; r) {
+            int mid = l + (r - l) / 2;
+            if (mid % 2 == 1) mid--;
+            if (nums[mid] == nums[mid + 1])
+                l = mid + 2;
+            else
+                r = mid;
+        }
+        return nums[l];
+    }
+};</pre>
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Initialize binary search bounds</li>
+  <li>Force mid to be even index</li>
+  <li>Check if current pair is valid</li>
+  <li>Skip valid pairs entirely</li>
+  <li>Converge to the single element</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li>Index parity is the core trick</li>
+  <li>Forgetting to normalize mid causes WA</li>
+  <li>Works only because array is sorted</li>
+  <li>Exactly one single element is guaranteed</li>
+</ul>
+`
+},
+{
+id: "162-find-peak-element",
+title: "162. Find Peak Element",
+content: `
+
+<h1>162. Find Peak Element</h1>
+<p>Find a peak element (greater than its neighbors) and return its index in O(log n).</p>
+
+<h3>Approach (Binary Search on Slope):</h3>
+<ul>
+  <li>Use binary search on indices</li>
+  <li>Compare mid with mid + 1 to detect slope direction</li>
+  <li>If descending, peak lies on left including mid</li>
+  <li>If ascending, peak lies on right</li>
+  <li>Converge to any valid peak</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(log n)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int findPeakElement(vector&lt;int&gt;&amp; nums) {
+        int l = 0, r = nums.size() - 1;
+        while (l &lt; r) {
+            int mid = l + (r - l) / 2;
+            if (nums[mid] &gt; nums[mid + 1])
+                r = mid;
+            else
+                l = mid + 1;
+        }
+        return l;
+    }
+};</pre>
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Initialize binary search bounds</li>
+  <li>Compare mid with next element</li>
+  <li>Move left when slope is down</li>
+  <li>Move right when slope is up</li>
+  <li>End when pointers meet at peak</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li>Peak is guaranteed to exist</li>
+  <li>Boundaries act as −∞ implicitly</li>
+  <li>Never access mid − 1, avoid bounds issues</li>
+  <li>Any peak index is acceptable</li>
+</ul>
+`
+},
+{
+id: "875-koko-eating-bananas",
+title: "875. Koko Eating Bananas",
+content: `
+
+<h1>875. Koko Eating Bananas</h1>
+<p>Find the minimum integer eating speed so Koko can finish all banana piles within h hours.</p>
+
+<h3>Approach (Binary Search on Answer):</h3>
+<ul>
+  <li>Search space is eating speed from 1 to max pile size</li>
+  <li>Feasibility check: compute total hours needed for a given speed</li>
+  <li>Use ceiling division to count hours per pile</li>
+  <li>If total hours ≤ h, try smaller speed</li>
+  <li>Otherwise, increase speed</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(n log M)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int minEatingSpeed(vector&lt;int&gt;&amp; piles, int h) {
+        int l = 1, r = 0;
+        for (int x : piles) r = max(r, x);
+
+    while (l &lt; r) {
+        int mid = l + (r - l) / 2;
+        long long hours = 0;
+        for (int x : piles) {
+            hours += (x + mid - 1) / mid;
+        }
+        if (hours &lt;= h) r = mid;
+        else l = mid + 1;
+    }
+    return l;
+}
+
+};</pre>
+
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Initialize binary search bounds using minimum and maximum possible speeds</li>
+  <li>Use binary search to test a candidate speed</li>
+  <li>Compute total hours using ceiling division for each pile</li>
+  <li>Shrink right bound if speed is feasible</li>
+  <li>Otherwise move left bound up</li>
+  <li>Return the minimum feasible speed</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li><code>(x + k - 1) / k</code> is mandatory to avoid undercounting hours</li>
+  <li>Using <code>int</code> for total hours can overflow; use <code>long long</code></li>
+  <li>Binary search condition must be <code>l &lt; r</code>, not <code>l &lt;= r</code></li>
+  <li>Answer is always within <code>[1, max(piles)]</code></li>
+  <li>No need to sort piles</li>
+</ul>
+`
 }
 
 
 
 
-      ]
-    }
+
+
+
+              ]
+            }
+            
         }
     }
 };
