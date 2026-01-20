@@ -3217,7 +3217,298 @@ public:
   <li>No need to sort piles</li>
 </ul>
 `
+},
+{
+id: "1482-minimum-number-of-days-to-make-m-bouquets",
+title: "1482. Minimum Number of Days to Make m Bouquets",
+content: `
+
+<h1>1482. Minimum Number of Days to Make m Bouquets</h1>
+<p>Find the minimum day such that it is possible to make m bouquets using k adjacent flowers.</p>
+
+<h3>Approach (Binary Search on Answer):</h3>
+<ul>
+  <li>Search days between minimum and maximum bloom day</li>
+  <li>For a given day, check feasibility by counting consecutive bloomed flowers</li>
+  <li>Form a bouquet whenever k consecutive flowers are bloomed</li>
+  <li>Reset consecutive count after forming a bouquet</li>
+  <li>If total bouquets ≥ m, day is feasible</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(n log D)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    bool canMake(vector&lt;int&gt;&amp; bloomDay, int m, int k, int day) {
+        int bouquets = 0, cnt = 0;
+        for (int x : bloomDay) {
+            if (x &lt;= day) {
+                cnt++;
+                if (cnt == k) {
+                    bouquets++;
+                    cnt = 0;
+                }
+            } else {
+                cnt = 0;
+            }
+        }
+        return bouquets &gt;= m;
+    }
+
+int minDays(vector&lt;int&gt;&amp; bloomDay, int m, int k) {
+    long long need = 1LL * m * k;
+    if (need &gt; bloomDay.size()) return -1;
+
+    int l = *min_element(bloomDay.begin(), bloomDay.end());
+    int r = *max_element(bloomDay.begin(), bloomDay.end());
+
+    while (l &lt; r) {
+        int mid = l + (r - l) / 2;
+        if (canMake(bloomDay, m, k, mid)) r = mid;
+        else l = mid + 1;
+    }
+    return l;
 }
+
+};</pre>
+
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Early exit if total required flowers exceed available flowers</li>
+  <li>Binary search over possible days</li>
+  <li>Feasibility function counts adjacent bloomed flowers</li>
+  <li>Increment bouquet count when k consecutive flowers are found</li>
+  <li>Reset counter on unbloomed flower</li>
+  <li>Narrow search to minimum feasible day</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li>Always check <code>m * k &gt; n</code> first or you’ll get WA</li>
+  <li>Bouquets require adjacency; sorting breaks the logic</li>
+  <li>Reset consecutive count after forming a bouquet</li>
+  <li>Use <code>long long</code> for <code>m * k</code> to avoid overflow</li>
+  <li>Binary search is on days, not indices</li>
+</ul>
+`
+},
+{
+id: "1283-find-the-smallest-divisor-given-a-threshold",
+title: "1283. Find the Smallest Divisor Given a Threshold",
+content: `
+
+<h1>1283. Find the Smallest Divisor Given a Threshold</h1>
+<p>Find the smallest positive integer divisor such that the sum of ⌈nums[i] / divisor⌉ over all elements is ≤ threshold.</p>
+
+<h3>Approach (Binary Search on Answer):</h3>
+<ul>
+  <li>Search divisor in range [1, max(nums)]</li>
+  <li>For a given divisor, compute sum using ceiling division</li>
+  <li>If sum ≤ threshold, divisor is feasible</li>
+  <li>Try smaller divisor to minimize answer</li>
+  <li>Otherwise increase divisor</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(n log M)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int smallestDivisor(vector&lt;int&gt;&amp; nums, int threshold) {
+        int l = 1, r = 0;
+        for (int x : nums) r = max(r, x);
+
+    while (l &lt; r) {
+        int mid = l + (r - l) / 2;
+        long long sum = 0;
+        for (int x : nums) {
+            sum += (x + mid - 1) / mid;
+        }
+        if (sum &lt;= threshold) r = mid;
+        else l = mid + 1;
+    }
+    return l;
+}
+
+};</pre>
+
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Initialize binary search bounds using valid divisor limits</li>
+  <li>Test a candidate divisor using ceiling division</li>
+  <li>Accumulate the transformed sum safely using long long</li>
+  <li>Shrink right bound if constraint is satisfied</li>
+  <li>Otherwise move left bound upward</li>
+  <li>Return minimum valid divisor</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li><code>(x + d - 1) / d</code> is required; plain division gives WA</li>
+  <li>Using <code>int</code> for sum can overflow for large inputs</li>
+  <li>Binary search is on divisor values, not array indices</li>
+  <li>Lower bound is always 1, never 0</li>
+  <li>Guaranteed solution exists per problem constraints</li>
+</ul>
+`
+},
+{
+id: "1011-capacity-to-ship-packages-within-d-days",
+title: "1011. Capacity To Ship Packages Within D Days",
+content: `
+
+<h1>1011. Capacity To Ship Packages Within D Days</h1>
+<p>Find the minimum ship capacity so all packages can be shipped within D days while preserving order.</p>
+
+<h3>Approach (Binary Search on Answer):</h3>
+<ul>
+  <li>Search capacity between max single package weight and total weight</li>
+  <li>For a given capacity, simulate shipping greedily day by day</li>
+  <li>Accumulate weights until capacity is exceeded, then move to next day</li>
+  <li>Count required days for the given capacity</li>
+  <li>If days ≤ D, capacity is feasible</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(n log S)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    bool canShip(vector&lt;int&gt;&amp; weights, int D, int cap) {
+        int days = 1, cur = 0;
+        for (int w : weights) {
+            if (cur + w &gt; cap) {
+                days++;
+                cur = 0;
+            }
+            cur += w;
+        }
+        return days &lt;= D;
+    }
+
+int shipWithinDays(vector&lt;int&gt;&amp; weights, int D) {
+    int l = 0, r = 0;
+    for (int w : weights) {
+        l = max(l, w);
+        r += w;
+    }
+
+    while (l &lt; r) {
+        int mid = l + (r - l) / 2;
+        if (canShip(weights, D, mid)) r = mid;
+        else l = mid + 1;
+    }
+    return l;
+}
+
+};</pre>
+
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Set binary search bounds using constraints of the problem</li>
+  <li>Simulate shipping process to check feasibility</li>
+  <li>Increment day count when capacity is exceeded</li>
+  <li>Greedily fill each day as much as possible</li>
+  <li>Shrink or expand search space based on feasibility</li>
+  <li>Return minimum valid capacity</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li>Lower bound must be max weight, not average</li>
+  <li>Preserving order is mandatory; sorting breaks correctness</li>
+  <li>Days start from 1, not 0</li>
+  <li>Using greedy fill minimizes days for a given capacity</li>
+  <li>Binary search on capacity, not days</li>
+</ul>
+`
+},
+{
+id: "1539-kth-missing-positive-number",
+title: "1539. Kth Missing Positive Number",
+content: `
+
+<h1>1539. Kth Missing Positive Number</h1>
+<p>Find the k-th missing positive integer from a strictly increasing sorted array.</p>
+
+<h3>Approach (Binary Search on Missing Count):</h3>
+<ul>
+  <li>Missing count before index i is <code>arr[i] - (i + 1)</code></li>
+  <li>Binary search for smallest index where missing count ≥ k</li>
+  <li>If k is larger than total missing inside array, answer is beyond last element</li>
+  <li>Use lower-bound style binary search</li>
+  <li>Compute result directly from index and k</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(log n)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int findKthPositive(vector&lt;int&gt;&amp; arr, int k) {
+        int l = 0, r = arr.size();
+        while (l &lt; r) {
+            int mid = l + (r - l) / 2;
+            int missing = arr[mid] - (mid + 1);
+            if (missing &lt; k) l = mid + 1;
+            else r = mid;
+        }
+        return l + k;
+    }
+};</pre>
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Binary search over indices, not values</li>
+  <li>Compute how many numbers are missing before mid</li>
+  <li>Move right if missing count is insufficient</li>
+  <li>Otherwise shrink to the left half</li>
+  <li>Final index l determines how many existing numbers are before answer</li>
+  <li>Result is index offset plus k</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li>Formula <code>arr[i] - (i + 1)</code> is the core trick; miss this and you brute-force</li>
+  <li>Answer can lie beyond the last array element</li>
+  <li>Binary search upper bound must be <code>n</code>, not <code>n-1</code></li>
+  <li>Off-by-one errors in missing count cause WA</li>
+  <li>Linear scan is acceptable but this is the optimal solution</li>
+</ul>
+`
+}
+
+
+
+
 
 
 
