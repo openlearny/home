@@ -3217,6 +3217,496 @@ public:
   <li>No need to sort piles</li>
 </ul>
 `
+},
+{
+id: "1482-minimum-number-of-days-to-make-m-bouquets",
+title: "1482. Minimum Number of Days to Make m Bouquets",
+content: `
+
+<h1>1482. Minimum Number of Days to Make m Bouquets</h1>
+<p>Find the minimum day such that it is possible to make m bouquets using k adjacent flowers.</p>
+
+<h3>Approach (Binary Search on Answer):</h3>
+<ul>
+  <li>Search days between minimum and maximum bloom day</li>
+  <li>For a given day, check feasibility by counting consecutive bloomed flowers</li>
+  <li>Form a bouquet whenever k consecutive flowers are bloomed</li>
+  <li>Reset consecutive count after forming a bouquet</li>
+  <li>If total bouquets ≥ m, day is feasible</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(n log D)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    bool canMake(vector&lt;int&gt;&amp; bloomDay, int m, int k, int day) {
+        int bouquets = 0, cnt = 0;
+        for (int x : bloomDay) {
+            if (x &lt;= day) {
+                cnt++;
+                if (cnt == k) {
+                    bouquets++;
+                    cnt = 0;
+                }
+            } else {
+                cnt = 0;
+            }
+        }
+        return bouquets &gt;= m;
+    }
+
+int minDays(vector&lt;int&gt;&amp; bloomDay, int m, int k) {
+    long long need = 1LL * m * k;
+    if (need &gt; bloomDay.size()) return -1;
+
+    int l = *min_element(bloomDay.begin(), bloomDay.end());
+    int r = *max_element(bloomDay.begin(), bloomDay.end());
+
+    while (l &lt; r) {
+        int mid = l + (r - l) / 2;
+        if (canMake(bloomDay, m, k, mid)) r = mid;
+        else l = mid + 1;
+    }
+    return l;
+}
+
+};</pre>
+
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Early exit if total required flowers exceed available flowers</li>
+  <li>Binary search over possible days</li>
+  <li>Feasibility function counts adjacent bloomed flowers</li>
+  <li>Increment bouquet count when k consecutive flowers are found</li>
+  <li>Reset counter on unbloomed flower</li>
+  <li>Narrow search to minimum feasible day</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li>Always check <code>m * k &gt; n</code> first or you’ll get WA</li>
+  <li>Bouquets require adjacency; sorting breaks the logic</li>
+  <li>Reset consecutive count after forming a bouquet</li>
+  <li>Use <code>long long</code> for <code>m * k</code> to avoid overflow</li>
+  <li>Binary search is on days, not indices</li>
+</ul>
+`
+},
+{
+id: "1283-find-the-smallest-divisor-given-a-threshold",
+title: "1283. Find the Smallest Divisor Given a Threshold",
+content: `
+
+<h1>1283. Find the Smallest Divisor Given a Threshold</h1>
+<p>Find the smallest positive integer divisor such that the sum of ⌈nums[i] / divisor⌉ over all elements is ≤ threshold.</p>
+
+<h3>Approach (Binary Search on Answer):</h3>
+<ul>
+  <li>Search divisor in range [1, max(nums)]</li>
+  <li>For a given divisor, compute sum using ceiling division</li>
+  <li>If sum ≤ threshold, divisor is feasible</li>
+  <li>Try smaller divisor to minimize answer</li>
+  <li>Otherwise increase divisor</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(n log M)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int smallestDivisor(vector&lt;int&gt;&amp; nums, int threshold) {
+        int l = 1, r = 0;
+        for (int x : nums) r = max(r, x);
+
+    while (l &lt; r) {
+        int mid = l + (r - l) / 2;
+        long long sum = 0;
+        for (int x : nums) {
+            sum += (x + mid - 1) / mid;
+        }
+        if (sum &lt;= threshold) r = mid;
+        else l = mid + 1;
+    }
+    return l;
+}
+
+};</pre>
+
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Initialize binary search bounds using valid divisor limits</li>
+  <li>Test a candidate divisor using ceiling division</li>
+  <li>Accumulate the transformed sum safely using long long</li>
+  <li>Shrink right bound if constraint is satisfied</li>
+  <li>Otherwise move left bound upward</li>
+  <li>Return minimum valid divisor</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li><code>(x + d - 1) / d</code> is required; plain division gives WA</li>
+  <li>Using <code>int</code> for sum can overflow for large inputs</li>
+  <li>Binary search is on divisor values, not array indices</li>
+  <li>Lower bound is always 1, never 0</li>
+  <li>Guaranteed solution exists per problem constraints</li>
+</ul>
+`
+},
+{
+id: "1011-capacity-to-ship-packages-within-d-days",
+title: "1011. Capacity To Ship Packages Within D Days",
+content: `
+
+<h1>1011. Capacity To Ship Packages Within D Days</h1>
+<p>Find the minimum ship capacity so all packages can be shipped within D days while preserving order.</p>
+
+<h3>Approach (Binary Search on Answer):</h3>
+<ul>
+  <li>Search capacity between max single package weight and total weight</li>
+  <li>For a given capacity, simulate shipping greedily day by day</li>
+  <li>Accumulate weights until capacity is exceeded, then move to next day</li>
+  <li>Count required days for the given capacity</li>
+  <li>If days ≤ D, capacity is feasible</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(n log S)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    bool canShip(vector&lt;int&gt;&amp; weights, int D, int cap) {
+        int days = 1, cur = 0;
+        for (int w : weights) {
+            if (cur + w &gt; cap) {
+                days++;
+                cur = 0;
+            }
+            cur += w;
+        }
+        return days &lt;= D;
+    }
+
+int shipWithinDays(vector&lt;int&gt;&amp; weights, int D) {
+    int l = 0, r = 0;
+    for (int w : weights) {
+        l = max(l, w);
+        r += w;
+    }
+
+    while (l &lt; r) {
+        int mid = l + (r - l) / 2;
+        if (canShip(weights, D, mid)) r = mid;
+        else l = mid + 1;
+    }
+    return l;
+}
+
+};</pre>
+
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Set binary search bounds using constraints of the problem</li>
+  <li>Simulate shipping process to check feasibility</li>
+  <li>Increment day count when capacity is exceeded</li>
+  <li>Greedily fill each day as much as possible</li>
+  <li>Shrink or expand search space based on feasibility</li>
+  <li>Return minimum valid capacity</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li>Lower bound must be max weight, not average</li>
+  <li>Preserving order is mandatory; sorting breaks correctness</li>
+  <li>Days start from 1, not 0</li>
+  <li>Using greedy fill minimizes days for a given capacity</li>
+  <li>Binary search on capacity, not days</li>
+</ul>
+`
+},
+{
+id: "1539-kth-missing-positive-number",
+title: "1539. Kth Missing Positive Number",
+content: `
+
+<h1>1539. Kth Missing Positive Number</h1>
+<p>Find the k-th missing positive integer from a strictly increasing sorted array.</p>
+
+<h3>Approach (Binary Search on Missing Count):</h3>
+<ul>
+  <li>Missing count before index i is <code>arr[i] - (i + 1)</code></li>
+  <li>Binary search for smallest index where missing count ≥ k</li>
+  <li>If k is larger than total missing inside array, answer is beyond last element</li>
+  <li>Use lower-bound style binary search</li>
+  <li>Compute result directly from index and k</li>
+</ul>
+
+<h3>Complexity:</h3>
+<ul>
+  <li>Time: O(log n)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int findKthPositive(vector&lt;int&gt;&amp; arr, int k) {
+        int l = 0, r = arr.size();
+        while (l &lt; r) {
+            int mid = l + (r - l) / 2;
+            int missing = arr[mid] - (mid + 1);
+            if (missing &lt; k) l = mid + 1;
+            else r = mid;
+        }
+        return l + k;
+    }
+};</pre>
+</div>
+
+<h3>Code Explanation:</h3>
+<ul>
+  <li>Binary search over indices, not values</li>
+  <li>Compute how many numbers are missing before mid</li>
+  <li>Move right if missing count is insufficient</li>
+  <li>Otherwise shrink to the left half</li>
+  <li>Final index l determines how many existing numbers are before answer</li>
+  <li>Result is index offset plus k</li>
+</ul>
+
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li>Formula <code>arr[i] - (i + 1)</code> is the core trick; miss this and you brute-force</li>
+  <li>Answer can lie beyond the last array element</li>
+  <li>Binary search upper bound must be <code>n</code>, not <code>n-1</code></li>
+  <li>Off-by-one errors in missing count cause WA</li>
+  <li>Linear scan is acceptable but this is the optimal solution</li>
+</ul>
+`
+},
+{
+id: "search-a-2d-matrix",
+title: "74. Search a 2D Matrix",
+content: `
+
+<h1>74. Search a 2D Matrix</h1>
+
+<p>Search for a target value in a row-wise sorted 2D matrix where each row’s first element is greater than the previous row’s last.</p>
+
+<h2>Approach (Binary Search on Virtual 1D Array):</h2>
+<ul>
+  <li>Treat the 2D matrix as a flattened sorted 1D array</li>
+  <li>Total elements = rows × cols, indices range from 0 to n*m−1</li>
+  <li>Map 1D index to 2D using row = idx / cols, col = idx % cols</li>
+  <li>Apply standard binary search on this virtual array</li>
+  <li>Compare target with mapped matrix element</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(log(n*m))</p>
+<p>Space: O(1)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    bool searchMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) {
+        int n = matrix.size();
+        int m = matrix[0].size();
+
+    int l = 0, r = n * m - 1;
+
+    while (l &lt;= r) {
+        int mid = l + (r - l) / 2;
+        int row = mid / m;
+        int col = mid % m;
+
+        if (matrix[row][col] == target) return true;
+        if (matrix[row][col] &lt; target) l = mid + 1;
+        else r = mid - 1;
+    }
+    return false;
+}
+
+}; </pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Uses matrix dimensions to simulate a flattened sorted array</li>
+  <li>Converts mid index into row and column positions</li>
+  <li>Performs binary search comparisons directly on matrix values</li>
+  <li>Narrows search space based on comparison result</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Forgetting mid → (row, col) mapping leads to wrong access</li>
+  <li>Overflow risk avoided using l + (r − l) / 2</li>
+  <li>Assumes matrix is non-empty; empty matrix needs guard</li>
+  <li>Row-wise binary search separately is unnecessary and slower</li>
+  <li>Works only because matrix is globally sorted, not just row-sorted</li>
+</ul>
+`
+},
+{
+id: "search-a-2d-matrix-ii",
+title: "240. Search a 2D Matrix II",
+content: `
+
+<h1>240. Search a 2D Matrix II</h1>
+
+<p>Search for a target in a matrix sorted in ascending order both row-wise and column-wise.</p>
+
+<h2>Approach (Staircase Search from Top-Right):</h2>
+<ul>
+  <li>Start from the top-right corner of the matrix</li>
+  <li>If current value equals target, return true</li>
+  <li>If current value is greater than target, move left</li>
+  <li>If current value is smaller than target, move down</li>
+  <li>Each move eliminates one row or one column</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(n + m)</p>
+<p>Space: O(1)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    bool searchMatrix(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int target) {
+        int n = matrix.size();
+        int m = matrix[0].size();
+
+    int r = 0, c = m - 1;
+
+    while (r &lt; n &amp;&amp; c &gt;= 0) {
+        if (matrix[r][c] == target) return true;
+        else if (matrix[r][c] &gt; target) c--;
+        else r++;
+    }
+    return false;
+}
+}; </pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Starts at top-right where left is smaller and down is larger</li>
+  <li>Moves left to reduce value when current is too big</li>
+  <li>Moves down to increase value when current is too small</li>
+  <li>Stops when indices go out of matrix bounds</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Binary search does NOT work directly due to lack of global ordering</li>
+  <li>Starting from top-left or bottom-right breaks monotonic elimination</li>
+  <li>Forgetting bounds (r &lt; n, c ≥ 0) causes runtime error</li>
+  <li>Works even with duplicate values in the matrix</li>
+  <li>Empty matrix must be checked before accessing matrix[0]</li>
+</ul>
+`
+},
+{
+id: "find-a-peak-element-ii",
+title: "1901. Find a Peak Element II",
+content: `
+
+<h1>1901. Find a Peak Element II</h1>
+
+<p>Find any peak element in a 2D grid where a peak is strictly greater than its four neighbors.</p>
+
+<h2>Approach (Binary Search on Columns):</h2>
+<ul>
+  <li>Perform binary search on columns, not rows</li>
+  <li>For a chosen mid column, find the row with maximum value</li>
+  <li>Compare this max element with its left and right neighbors</li>
+  <li>Move search to the side that has a larger neighbor</li>
+  <li>A peak is guaranteed to exist due to boundary conditions</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(n · log m)</p>
+<p>Space: O(1)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    vector&lt;int&gt; findPeakGrid(vector&lt;vector&lt;int&gt;&gt;&amp; mat) {
+        int n = mat.size();
+        int m = mat[0].size();
+
+    int l = 0, r = m - 1;
+
+    while (l &lt;= r) {
+        int mid = l + (r - l) / 2;
+
+        int maxRow = 0;
+        for (int i = 0; i &lt; n; i++) {
+            if (mat[i][mid] &gt; mat[maxRow][mid])
+                maxRow = i;
+        }
+
+        int left = (mid &gt; 0) ? mat[maxRow][mid - 1] : -1;
+        int right = (mid &lt; m - 1) ? mat[maxRow][mid + 1] : -1;
+
+        if (mat[maxRow][mid] &gt; left &amp;&amp; mat[maxRow][mid] &gt; right)
+            return {maxRow, mid};
+        else if (right &gt; mat[maxRow][mid])
+            l = mid + 1;
+        else
+            r = mid - 1;
+    }
+    return {};
+}
+
+}; </pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Binary search narrows columns based on neighbor comparison</li>
+  <li>Scans a column to find its maximum row index</li>
+  <li>Uses left and right neighbors to decide search direction</li>
+  <li>Returns position immediately when a peak condition is met</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Using row-wise binary search breaks correctness</li>
+  <li>You must pick the maximum element in the mid column</li>
+  <li>Boundary columns assume neighbors as −1 per constraints</li>
+  <li>Time limit fails if you do full 2D scanning</li>
+  <li>Any valid peak is acceptable, not necessarily global maximum</li>
+</ul>
+`
 }
 
 
@@ -3224,6 +3714,669 @@ public:
 
 
 
+
+
+
+
+
+
+
+
+              ],
+              "Hard":[
+                {
+id: "410-split-array-largest-sum",
+title: "410. Split Array Largest Sum",
+content: `
+
+<h1>410.	Split Array Largest Sum</h1>
+<p>Split an array into k non-empty continuous subarrays to minimize the maximum subarray sum.</p>
+<h2>Approach (Binary Search on Answer):</h2>
+<ul>
+  <li>• Lower bound is the maximum element, upper bound is the total sum</li>
+  <li>• Feasibility check: greedy split to count subarrays for a given max sum</li>
+  <li>• If required subarrays &gt; k, mid is too small</li>
+  <li>• If required subarrays ≤ k, try smaller maximum</li>
+  <li>• Binary search for the minimal feasible maximum sum</li>
+</ul>
+<h3>Complexity:</h3>
+<p>Time: O(n log(sum − max))</p>
+<p>Space: O(1)</p>
+<h3>C++ Reference Code:</h3>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int requiredSubarrays(vector&lt;int&gt;&amp; nums, long long maxSum) {
+        int cnt = 1;
+        long long curr = 0;
+        for (int x : nums) {
+            if (curr + x &gt; maxSum) {
+                cnt++;
+                curr = x;
+            } else {
+                curr += x;
+            }
+        }
+        return cnt;
+    }
+
+int splitArray(vector&lt;int&gt;&amp; nums, int k) {
+    long long l = *max_element(nums.begin(), nums.end());
+    long long r = 0;
+    for (int x : nums) r += x;
+
+    while (l &lt; r) {
+        long long mid = l + (r - l) / 2;
+        if (requiredSubarrays(nums, mid) &lt;= k)
+            r = mid;
+        else
+            l = mid + 1;
+    }
+    return (int)l;
+}
+
+};</pre>
+
+</div>
+<h3>Code Explanation:</h3>
+<ul>
+  <li>• requiredSubarrays greedily counts splits needed under a given maximum sum</li>
+  <li>• Lower bound ensures no subarray is forced below max element</li>
+  <li>• Binary search narrows to the smallest feasible maximum sum</li>
+  <li>• Condition ensures at most k subarrays are used</li>
+  <li>• Final l is the minimum possible largest subarray sum</li>
+</ul>
+<h3>Key Insights / Edge Cases:</h3>
+<ul>
+  <li>• Greedy split works because order must be preserved</li>
+  <li>• Off-by-one errors in subarray count cause WA</li>
+  <li>• Use long long to avoid overflow on sums</li>
+  <li>• k = n forces answer to max element</li>
+  <li>• k = 1 forces answer to total sum</li>
+</ul>
+`
+},
+{
+id: "median-of-two-sorted-arrays",
+title: "4. Median of Two Sorted Arrays",
+content: `
+
+<h1>4. Median of Two Sorted Arrays</h1>
+
+<p>Find the median of two sorted arrays in O(log(min(n, m))) time.</p>
+
+<h2>Approach (Binary Search on Partition):</h2>
+<ul>
+  <li>Always binary search on the smaller array to keep bounds valid</li>
+  <li>Partition both arrays so left halves contain half of total elements</li>
+  <li>Ensure max(left parts) ≤ min(right parts) for a valid partition</li>
+  <li>Adjust partition using binary search based on comparison violations</li>
+  <li>Compute median from boundary elements once partition is valid</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(log(min(n, m)))</p>
+<p>Space: O(1)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    double findMedianSortedArrays(vector&lt;int&gt;&amp; A, vector&lt;int&gt;&amp; B) {
+        if (A.size() &gt; B.size()) return findMedianSortedArrays(B, A);
+
+    int n = A.size(), m = B.size();
+    int low = 0, high = n;
+
+    while (low &lt;= high) {
+        int cutA = (low + high) / 2;
+        int cutB = (n + m + 1) / 2 - cutA;
+
+        int leftA = (cutA == 0) ? INT_MIN : A[cutA - 1];
+        int rightA = (cutA == n) ? INT_MAX : A[cutA];
+        int leftB = (cutB == 0) ? INT_MIN : B[cutB - 1];
+        int rightB = (cutB == m) ? INT_MAX : B[cutB];
+
+        if (leftA &lt;= rightB &amp;&amp; leftB &lt;= rightA) {
+            if ((n + m) % 2 == 0)
+                return (max(leftA, leftB) + min(rightA, rightB)) / 2.0;
+            else
+                return max(leftA, leftB);
+        } else if (leftA &gt; rightB) {
+            high = cutA - 1;
+        } else {
+            low = cutA + 1;
+        }
+    }
+    return 0.0;
+}
+
+}; </pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Forces binary search on the smaller array to avoid invalid partitions</li>
+  <li>Chooses partition indices so left side has half the total elements</li>
+  <li>Uses sentinels (INT_MIN, INT_MAX) to handle edge partitions</li>
+  <li>Validates correct partition using ordering constraints</li>
+  <li>Computes median based on total length parity</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Forgetting to binary search the smaller array causes out-of-bounds access</li>
+  <li>Using (n + m) / 2 instead of (n + m + 1) / 2 breaks odd-length cases</li>
+  <li>Median comes from max(left) not min(right) for odd total length</li>
+  <li>INT_MIN / INT_MAX are mandatory for clean boundary handling</li>
+  <li>Works even when one array is empty</li>
+</ul>
+`
+}
+
+
+              ]
+            },
+            "STRINGS PROBLEMS":{
+              "Easy":[
+                {
+id: "1021-remove-outermost-parentheses",
+title: "1021. Remove Outermost Parentheses",
+content: `
+
+<h1>1021. Remove Outermost Parentheses</h1>
+
+<p>Remove the outermost parentheses from every primitive valid parentheses substring.</p>
+
+<h2>Approach (Depth Counter):</h2>
+<ul>
+  <li>Traverse the string while maintaining a balance counter</li>
+  <li>Increment counter on '(' and decrement on ')'</li>
+  <li>Skip '(' when counter is 0 (outermost opening)</li>
+  <li>Skip ')' when counter becomes 0 after decrement (outermost closing)</li>
+  <li>Append all other parentheses to result</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(n)</p>
+<p>Space: O(n) ignoring output</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    string removeOuterParentheses(string s) {
+        string res;
+        int bal = 0;
+        for(char c : s) {
+            if(c == '(') {
+                if(bal &gt; 0) res.push_back(c);
+                bal++;
+            } else {
+                bal--;
+                if(bal &gt; 0) res.push_back(c);
+            }
+        }
+        return res;
+    }
+};</pre>
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li><code>bal</code> tracks current nesting depth</li>
+  <li>Outer '(' is detected when <code>bal == 0</code> before increment</li>
+  <li>Outer ')' is detected when <code>bal == 0</code> after decrement</li>
+  <li>Only non-outer parentheses are appended to result</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Primitive strings always start with '(' and end with ')'</li>
+  <li>Order of increment/decrement is critical</li>
+  <li>Appending before vs after balance update causes WA</li>
+  <li>Works correctly for concatenated primitives</li>
+</ul>
+`
+},
+{
+id: "1903-largest-odd-number-in-string",
+title: "1903. Largest Odd Number in String",
+content: `
+
+<h1>1903. Largest Odd Number in String</h1>
+<p>Given a numeric string, return the largest-valued odd-numbered substring that starts from index 0.</p>
+
+<h2>Approach (Greedy Scan from End):</h2>
+<ul>
+  <li>An odd number must end with an odd digit</li>
+  <li>Scan from right to left to find the last odd digit</li>
+  <li>The substring from index 0 to that position is the largest possible odd number</li>
+  <li>If no odd digit exists, no valid answer</li>
+  <li>Avoid integer conversion to prevent overflow</li>
+</ul>
+
+<h2>Complexity:</h2>
+<ul>
+  <li>Time: O(n)</li>
+  <li>Space: O(1) ignoring output</li>
+</ul>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    string largestOddNumber(string num) {
+        for (int i = num.size() - 1; i &gt;= 0; i--) {
+            if ((num[i] - &#39;0&#39;) % 2 == 1) {
+                return num.substr(0, i + 1);
+            }
+        }
+        return &quot;&quot;;
+    }
+};
+  </pre>
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Iterate from the last digit to the first</li>
+  <li>Check if the digit is odd using modulo</li>
+  <li>Return prefix ending at the first odd digit found</li>
+  <li>If loop finishes, no odd digit exists</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Any suffix after the last odd digit makes the number even</li>
+  <li>Leading zeros are allowed and preserved</li>
+  <li>Empty result is required if all digits are even</li>
+  <li>Do not parse into integers due to large constraints</li>
+</ul>
+`
+},
+{
+id: "14-longest-common-prefix",
+title: "14. Longest Common Prefix",
+content: `
+
+<h1>14. Longest Common Prefix</h1>
+<p>Find the longest prefix string common to all strings in the array.</p>
+
+<h2>Approach (Vertical Scanning):</h2>
+<ul>
+  <li>Use the first string as a reference prefix</li>
+  <li>Compare characters column-wise across all strings</li>
+  <li>Stop immediately on mismatch or string end</li>
+  <li>Build prefix incrementally from left to right</li>
+  <li>Early exit minimizes unnecessary comparisons</li>
+</ul>
+
+<h2>Complexity:</h2>
+<ul>
+  <li>Time: O(n · m)</li>
+  <li>Space: O(1) ignoring output</li>
+</ul>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    string longestCommonPrefix(vector&lt;string&gt;&amp; strs) {
+        if (strs.empty()) return &quot;&quot;;
+        for (int i = 0; i &lt; strs[0].size(); i++) {
+            char c = strs[0][i];
+            for (int j = 1; j &lt; strs.size(); j++) {
+                if (i &gt;= strs[j].size() || strs[j][i] != c)
+                    return strs[0].substr(0, i);
+            }
+        }
+        return strs[0];
+    }
+};
+  </pre>
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Treat the first string as baseline</li>
+  <li>Compare each character with same index in other strings</li>
+  <li>Return prefix immediately on mismatch</li>
+  <li>If no mismatch occurs, entire first string is the prefix</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Empty input array returns empty string</li>
+  <li>If any string is empty, answer is empty</li>
+  <li>Stop early to avoid TLE on long strings</li>
+  <li>Horizontal scanning is slower for early mismatches</li>
+</ul>
+`
+},
+{
+id: "205-isomorphic-strings",
+title: "205. Isomorphic Strings",
+content: `
+
+<h1>205. Isomorphic Strings</h1>
+<p>Determine if two strings are isomorphic, meaning characters in one string can be mapped one-to-one to characters in the other.</p>
+
+<h2>Approach (Bidirectional Hash Mapping):</h2>
+<ul>
+  <li>Each character in <code>s</code> must map to exactly one character in <code>t</code></li>
+  <li>Mapping must be consistent across all positions</li>
+  <li>Enforce reverse mapping to prevent many-to-one relations</li>
+  <li>Traverse both strings simultaneously</li>
+  <li>Fail immediately on any conflict</li>
+</ul>
+
+<h2>Complexity:</h2>
+<ul>
+  <li>Time: O(n)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+        vector&lt;int&gt; m1(256, -1), m2(256, -1);
+
+    for (int i = 0; i &lt; s.size(); i++) {
+        if (m1[s[i]] == -1 &amp;&amp; m2[t[i]] == -1) {
+            m1[s[i]] = t[i];
+            m2[t[i]] = s[i];
+        } else if (m1[s[i]] != t[i] || m2[t[i]] != s[i]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+}; </pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Use two vectors for forward and reverse character mapping</li>
+  <li>Initialize all mappings as unused</li>
+  <li>Assign mappings only when both characters are unseen</li>
+  <li>Reject immediately if an existing mapping mismatches</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>One-direction mapping causes incorrect acceptance</li>
+  <li>Different length strings cannot be isomorphic</li>
+  <li>Vector/array is faster and simpler than hash maps</li>
+  <li>Same characters must map consistently throughout</li>
+  <li>Early conflict detection avoids unnecessary traversal</li>
+</ul>
+`
+},
+{
+id: "796-rotate-string",
+title: "796. Rotate String",
+content: `
+
+<h1>796. Rotate String</h1>
+<p>Check if <code>goal</code> can be obtained by rotating <code>s</code> any number of times.</p>
+
+<h2>Approach (String Concatenation Check):</h2>
+<ul>
+  <li>Rotation preserves string length</li>
+  <li>Any rotation of <code>s</code> must appear as a substring of <code>s + s</code></li>
+  <li>Concatenate <code>s</code> with itself to cover all rotations</li>
+  <li>Check if <code>goal</code> exists as a substring</li>
+  <li>Reject immediately if lengths differ</li>
+</ul>
+
+<h2>Complexity:</h2>
+<ul>
+  <li>Time: O(n)</li>
+  <li>Space: O(n)</li>
+</ul>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    bool rotateString(string s, string goal) {
+        if (s.size() != goal.size()) return false;
+        return (s + s).find(goal) != string::npos;
+    }
+};
+  </pre>
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Length mismatch means rotation is impossible</li>
+  <li>Concatenate string with itself to simulate all rotations</li>
+  <li>Use substring search to check presence of <code>goal</code></li>
+  <li>Return true if found, otherwise false</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Empty strings are valid rotations of each other</li>
+  <li>Do not attempt manual rotation loops — unnecessary</li>
+  <li><code>find</code> handles all rotation positions implicitly</li>
+  <li>Works only because rotation preserves order and length</li>
+</ul>
+`
+},
+{
+id: "242-valid-anagram",
+title: "242. Valid Anagram",
+content: `
+
+<h1>242. Valid Anagram</h1>
+<p>Check whether two strings are anagrams of each other.</p>
+
+<h2>Approach (Frequency Counting):</h2>
+<ul>
+  <li>Anagrams must have equal lengths</li>
+  <li>Count frequency of each character in first string</li>
+  <li>Decrease frequency using second string</li>
+  <li>Any negative count indicates mismatch</li>
+  <li>Fixed-size array/vector is sufficient for lowercase letters</li>
+</ul>
+
+<h2>Complexity:</h2>
+<ul>
+  <li>Time: O(n)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if (s.size() != t.size()) return false;
+        vector&lt;int&gt; freq(26, 0);
+
+    for (char c : s) freq[c - &#39;a&#39;]++;
+    for (char c : t) {
+        if (--freq[c - &#39;a&#39;] &lt; 0) return false;
+    }
+    return true;
+}
+
+}; </pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Reject immediately if lengths differ</li>
+  <li>Increment count for each character in first string</li>
+  <li>Decrement count using second string</li>
+  <li>Negative count means extra character in <code>t</code></li>
+  <li>All zero counts imply valid anagram</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Sorting-based solutions are slower</li>
+  <li>Works only for lowercase English letters</li>
+  <li>Frequency array avoids hash overhead</li>
+  <li>Early failure prevents unnecessary traversal</li>
+</ul>
+`
+},
+{
+id: "13-roman-to-integer",
+title: "13. Roman to Integer",
+content: `
+
+<h1>13. Roman to Integer</h1>
+<p>Convert a Roman numeral string into its integer value.</p>
+
+<h2>Approach (Greedy Scan with Value Comparison):</h2>
+<ul>
+  <li>Map each Roman symbol to its integer value</li>
+  <li>Traverse string from left to right</li>
+  <li>If current value is less than next value, subtract it</li>
+  <li>Otherwise, add the current value</li>
+  <li>Subtractive cases are handled naturally by comparison</li>
+</ul>
+
+<h2>Complexity:</h2>
+<ul>
+  <li>Time: O(n)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    int romanToInt(string s) {
+        unordered_map&lt;char, int&gt; val = {
+            {&#39;I&#39;,1}, {&#39;V&#39;,5}, {&#39;X&#39;,10}, {&#39;L&#39;,50},
+            {&#39;C&#39;,100}, {&#39;D&#39;,500}, {&#39;M&#39;,1000}
+        };
+
+
+    int res = 0;
+    for (int i = 0; i &lt; s.size(); i++) {
+        if (i + 1 &lt; s.size() &amp;&amp; val[s[i]] &lt; val[s[i + 1]])
+            res -= val[s[i]];
+        else
+            res += val[s[i]];
+    }
+    return res;
+}
+
+}; </pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Store integer values of Roman symbols</li>
+  <li>Compare current symbol with the next one</li>
+  <li>Subtract when a smaller value precedes a larger one</li>
+  <li>Add otherwise to accumulate total</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Subtractive pairs like IV, IX, XL handled by logic</li>
+  <li>No need to hardcode special cases</li>
+  <li>Input is guaranteed to be valid Roman numeral</li>
+  <li>Single-character strings work correctly</li>
+</ul>
+`
+}
+
+
+
+
+
+
+              ],
+              "Medium":[
+                {
+id: "151-reverse-words-in-a-string",
+title: "151. Reverse Words in a String",
+content: `
+
+<h1>151. Reverse Words in a String</h1>
+<p>Reverse the order of words in a string, removing extra spaces and keeping single spaces between words.</p>
+
+<h2>Approach (Two Pointers + String Parsing):</h2>
+<ul>
+  <li>Traverse string from end to start to capture words in reverse order</li>
+  <li>Skip trailing and intermediate spaces explicitly</li>
+  <li>Identify word boundaries using two pointers</li>
+  <li>Append words to result with single space separation</li>
+  <li>Avoid in-place modification to simplify space handling</li>
+</ul>
+
+<h2>Complexity:</h2>
+<ul>
+  <li>Time: O(n)</li>
+  <li>Space: O(n) ignoring output</li>
+</ul>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    string reverseWords(string s) {
+        int n = s.size();
+        string res;
+        int i = n - 1;
+
+    while (i &gt;= 0) {
+        while (i &gt;= 0 &amp;&amp; s[i] == &#39; &#39;) i--;
+        if (i &lt; 0) break;
+        int j = i;
+        while (j &gt;= 0 &amp;&amp; s[j] != &#39; &#39;) j--;
+        if (!res.empty()) res += &#39; &#39;;
+        res += s.substr(j + 1, i - j);
+        i = j - 1;
+    }
+    return res;
+}
+
+}; </pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Start scanning from the end to reverse word order</li>
+  <li>Skip spaces to find the end of a word</li>
+  <li>Use another pointer to find the start of the word</li>
+  <li>Extract the word using substring</li>
+  <li>Append words with controlled spacing</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Leading and trailing spaces must be ignored</li>
+  <li>Multiple spaces between words collapse into one</li>
+  <li>Do not reverse characters inside a word</li>
+  <li>In-place reversal is error-prone due to spacing</li>
+  <li>Empty or space-only strings should return empty output</li>
+</ul>
+`
+}
 
               ]
             }
