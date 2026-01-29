@@ -4379,6 +4379,127 @@ public:
 }
 
               ]
+            },
+            "LINKED LIST PROBLEMS":{
+              "Easy":[
+                {
+id: "876-middle-of-the-linked-list",
+title: "876. Middle of the Linked List",
+content: `
+
+<h1>876. Middle of the Linked List</h1>
+<p>Return the middle node of a singly linked list; if there are two middle nodes, return the second one.</p>
+
+<h2>Approach (Fast and Slow Pointers):</h2>
+<ul>
+  <li>Use two pointers starting at head</li>
+  <li>Slow pointer moves one step at a time</li>
+  <li>Fast pointer moves two steps at a time</li>
+  <li>When fast reaches the end, slow is at the middle</li>
+  <li>Naturally returns second middle for even-length lists</li>
+</ul>
+
+<h2>Complexity:</h2>
+<ul>
+  <li>Time: O(n)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+    while (fast &amp;&amp; fast-&gt;next) {
+        slow = slow-&gt;next;
+        fast = fast-&gt;next-&gt;next;
+    }
+    return slow;
+}
+
+}; </pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Initialize both pointers at head</li>
+  <li>Advance slow by one and fast by two</li>
+  <li>Loop ends when fast cannot move further</li>
+  <li>Slow pointer points to required middle node</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Single-node list returns that node</li>
+  <li>Even-length list returns second middle by design</li>
+  <li>Avoid counting length — extra pass is unnecessary</li>
+  <li>Fast pointer condition prevents null access</li>
+</ul>
+`
+},
+
+
+              ],
+              "Medium":[
+                {
+id: "237-delete-node-in-a-linked-list",
+title: "237. Delete Node in a Linked List",
+content: `
+
+<h1>237. Delete Node in a Linked List</h1>
+<p>Delete the given node from a singly linked list when only that node is provided.</p>
+
+<h2>Approach (Overwrite Next Node Technique):</h2>
+<ul>
+  <li>You are not given the head, so direct deletion is impossible</li>
+  <li>Copy the value of the next node into the current node</li>
+  <li>Redirect current node’s next pointer to skip the next node</li>
+  <li>Effectively removes the next node instead</li>
+  <li>Works because the given node is guaranteed not to be the tail</li>
+</ul>
+
+<h2>Complexity:</h2>
+<ul>
+  <li>Time: O(1)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        node-&gt;val = node-&gt;next-&gt;val;
+        node-&gt;next = node-&gt;next-&gt;next;
+    }
+};
+  </pre>
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Overwrite current node’s value with next node’s value</li>
+  <li>Bypass the next node by adjusting the pointer</li>
+  <li>The list now behaves as if current node was deleted</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>This fails if the node is the last node (guaranteed not to happen)</li>
+  <li>Actual deletion is impossible without head access</li>
+  <li>Conceptually deletes the next node, not the given one</li>
+  <li>No memory deallocation is required by problem constraints</li>
+</ul>
+`
+}
+
+              ]
             }
             
         }
