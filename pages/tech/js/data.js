@@ -4442,6 +4442,326 @@ public:
 </ul>
 `
 },
+{
+id: "206-reverse-linked-list",
+title: "206. Reverse Linked List",
+content: `
+
+<h1>206. Reverse Linked List</h1>
+<p>Reverse a singly linked list and return the new head.</p>
+
+<h2>Approach (Iterative Pointer Reversal):</h2>
+<ul>
+  <li>Maintain three pointers: previous, current, next</li>
+  <li>Traverse the list once</li>
+  <li>Reverse the <code>next</code> pointer of each node</li>
+  <li>Move pointers forward systematically</li>
+  <li>Final previous pointer becomes new head</li>
+</ul>
+
+<h2>Complexity:</h2>
+<ul>
+  <li>Time: O(n)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+
+    while (curr) {
+        ListNode* nextNode = curr-&gt;next;
+        curr-&gt;next = prev;
+        prev = curr;
+        curr = nextNode;
+    }
+    return prev;
+}
+
+}; </pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Initialize <code>prev</code> as null and <code>curr</code> as head</li>
+  <li>Store next node before breaking the link</li>
+  <li>Reverse current node’s pointer</li>
+  <li>Advance both pointers forward</li>
+  <li>Return <code>prev</code> as the new head</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Empty list returns null</li>
+  <li>Single-node list remains unchanged</li>
+  <li>Do not lose reference to next node</li>
+  <li>Recursive solution uses extra stack space</li>
+</ul>
+
+<h2>Approach (Recursive Pointer Reversal):</h2>
+<ul>
+  <li>Base case: empty list or single node is already reversed</li>
+  <li>Recursively reverse the rest of the list</li>
+  <li>Fix the current node by reversing its next pointer</li>
+  <li>Set current node’s next to null to avoid cycles</li>
+  <li>Propagate new head back through recursion</li>
+</ul>
+
+<h2>Complexity:</h2>
+<ul>
+  <li>Time: O(n)</li>
+  <li>Space: O(n) due to recursion stack</li>
+</ul>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        if (!head || !head-&gt;next) return head;
+
+    ListNode* newHead = reverseList(head-&gt;next);
+    head-&gt;next-&gt;next = head;
+    head-&gt;next = nullptr;
+
+    return newHead;
+}
+
+}; </pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Stop recursion at last node or empty list</li>
+  <li>Reverse the list starting from second node</li>
+  <li>Make next node point back to current node</li>
+  <li>Break original forward link</li>
+  <li>Return the head of reversed list</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Forgetting <code>head-&gt;next = nullptr</code> causes cycles</li>
+  <li>Uses extra stack space compared to iterative</li>
+  <li>Clean and elegant but risky for very deep lists</li>
+  <li>Base case must handle single-node correctly</li>
+</ul>
+
+`
+},
+{
+id: "141-linked-list-cycle",
+title: "141. Linked List Cycle",
+content: `
+
+<h1>141. Linked List Cycle</h1>
+<p>Determine if a linked list contains a cycle.</p>
+
+<h2>Approach (Floyd’s Cycle Detection / Tortoise and Hare):</h2>
+<ul>
+  <li>Use two pointers moving at different speeds</li>
+  <li>Slow pointer moves one step at a time</li>
+  <li>Fast pointer moves two steps at a time</li>
+  <li>If a cycle exists, fast and slow will meet</li>
+  <li>If fast reaches null, no cycle exists</li>
+</ul>
+
+<h2>Complexity:</h2>
+<ul>
+  <li>Time: O(n)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        if (!head) return false;
+
+    ListNode* slow = head;
+    ListNode* fast = head;
+
+    while (fast &amp;&amp; fast-&gt;next) {
+        slow = slow-&gt;next;
+        fast = fast-&gt;next-&gt;next;
+        if (slow == fast) return true;
+    }
+    return false;
+}
+
+}; </pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Initialize both pointers at head</li>
+  <li>Move slow by one and fast by two nodes</li>
+  <li>Check equality after each move</li>
+  <li>Meeting point confirms a cycle</li>
+  <li>Loop exit without meeting means no cycle</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Using <code>while (fast || fast-&gt;next)</code> causes runtime error</li>
+  <li>Single node without self-loop returns false</li>
+  <li>Self-looped single node returns true</li>
+  <li>Hashing-based solutions waste extra space</li>
+  <li>Floyd’s algorithm is optimal for this problem</li>
+</ul>
+`
+},
+{
+id: "234-palindrome-linked-list",
+title: "234. Palindrome Linked List",
+content: `
+
+<h1>234. Palindrome Linked List</h1>
+
+<p>Check whether a singly linked list is a palindrome.</p>
+
+<h2>Approach (Fast-Slow Pointer + Reverse Second Half):</h2>
+<ul>
+  <li>Use fast and slow pointers to find the middle</li>
+  <li>Reverse the second half of the linked list</li>
+  <li>Compare first half and reversed second half node by node</li>
+  <li>Only need to traverse half the list for comparison</li>
+  <li>Optional: list restoration is not required by problem</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(n)</p>
+<p>Space: O(1)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        if (!head || !head-&gt;next) return true;
+
+    ListNode* slow = head;
+    ListNode* fast = head;
+
+    while (fast &amp;&amp; fast-&gt;next) {
+        slow = slow-&gt;next;
+        fast = fast-&gt;next-&gt;next;
+    }
+
+    ListNode* prev = nullptr;
+    while (slow) {
+        ListNode* nextNode = slow-&gt;next;
+        slow-&gt;next = prev;
+        prev = slow;
+        slow = nextNode;
+    }
+
+    ListNode* left = head;
+    ListNode* right = prev;
+
+    while (right) {
+        if (left-&gt;val != right-&gt;val) return false;
+        left = left-&gt;next;
+        right = right-&gt;next;
+    }
+    return true;
+}
+
+}; </pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Find middle using fast and slow pointers</li>
+  <li>Reverse list starting from middle</li>
+  <li>Compare values from both ends</li>
+  <li>Stop comparison when second half finishes</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Odd-length lists automatically skip the middle element</li>
+  <li>Reversing from <code>slow</code> works for both even and odd lengths</li>
+  <li>Do not compare beyond second half</li>
+  <li>Hashing or array-based solutions waste space</li>
+  <li>Forgetting to reverse causes false positives</li>
+</ul>
+`
+},
+{
+id: "160-intersection-of-two-linked-lists",
+title: "160. Intersection of Two Linked Lists",
+content: `
+
+<h1>160. Intersection of Two Linked Lists</h1>
+
+<p>Find the node at which two singly linked lists intersect, or return null if they do not intersect.</p>
+
+<h2>Approach (Two Pointers with Switching):</h2>
+<ul>
+  <li>Use two pointers starting at each list head</li>
+  <li>Move each pointer one step at a time</li>
+  <li>When a pointer reaches the end, redirect it to the other list’s head</li>
+  <li>After at most two passes, pointers either meet at intersection or both reach null</li>
+  <li>No length calculation or extra space required</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(n + m)</p>
+<p>Space: O(1)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        if (!headA || !headB) return nullptr;
+        ListNode *a = headA, *b = headB;
+        while (a != b) {
+            a = a ? a-&gt;next : headB;
+            b = b ? b-&gt;next : headA;
+        }
+        return a;
+    }
+};
+  </pre>
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Initialize two pointers at heads of both lists</li>
+  <li>Traverse each list normally</li>
+  <li>Switch pointer to the other list after reaching null</li>
+  <li>Equalizes path length without explicit calculation</li>
+  <li>Loop exits when pointers meet or both become null</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Do not compare node values; compare node addresses</li>
+  <li>Works only if lists may share actual nodes, not just values</li>
+  <li>Handles different list lengths automatically</li>
+  <li>Infinite loop occurs if pointer switching logic is wrong</li>
+</ul>
+`
+}
+
+
+
 
 
               ],
@@ -4497,7 +4817,434 @@ public:
   <li>No memory deallocation is required by problem constraints</li>
 </ul>
 `
+},
+{
+id: "142-linked-list-cycle-ii",
+title: "142. Linked List Cycle II",
+content: `
+
+<h1>142. Linked List Cycle II</h1>
+<p>Return the node where the cycle begins in a linked list, or null if there is no cycle.</p>
+
+<h2>Approach (Floyd’s Cycle Detection + Entry Point Logic):</h2>
+<ul>
+  <li>Use slow and fast pointers to detect cycle</li>
+  <li>If no meeting occurs, there is no cycle</li>
+  <li>After meeting, reset one pointer to head</li>
+  <li>Move both pointers one step at a time</li>
+  <li>The node where they meet again is the cycle start</li>
+</ul>
+
+<h2>Complexity:</h2>
+<ul>
+  <li>Time: O(n)</li>
+  <li>Space: O(1)</li>
+</ul>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        if (!head) return nullptr;
+
+    ListNode* slow = head;
+    ListNode* fast = head;
+
+    while (fast &amp;&amp; fast-&gt;next) {
+        slow = slow-&gt;next;
+        fast = fast-&gt;next-&gt;next;
+        if (slow == fast) {
+            slow = head;
+            while (slow != fast) {
+                slow = slow-&gt;next;
+                fast = fast-&gt;next;
+            }
+            return slow;
+        }
+    }
+    return nullptr;
 }
+
+}; </pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>First phase detects whether a cycle exists</li>
+  <li>Pointer meeting confirms the presence of a cycle</li>
+  <li>Reset one pointer to head</li>
+  <li>Move both pointers at equal speed</li>
+  <li>Their meeting point is the cycle entry</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Do not skip the initial cycle detection phase</li>
+  <li>Resetting only one pointer is critical</li>
+  <li>Works due to distance relationship in cycle math</li>
+  <li>If no cycle, return null immediately</li>
+  <li>HashSet solution is simpler but uses extra space</li>
+</ul>
+`
+},
+{
+id: "328-odd-even-linked-list",
+title: "328. Odd Even Linked List",
+content: `
+
+<h1>328. Odd Even Linked List</h1>
+
+<p>Rearrange a linked list so that all nodes at odd indices come first, followed by nodes at even indices.</p>
+
+<h2>Approach (Pointer Rewiring with Two Lists):</h2>
+<ul>
+  <li>Maintain separate pointers for odd and even positions</li>
+  <li>Preserve the head of the even list for final attachment</li>
+  <li>Rewire next pointers in a single pass</li>
+  <li>Advance odd and even pointers alternately</li>
+  <li>Attach even list after odd list</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(n)</p>
+<p>Space: O(1)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    ListNode* oddEvenList(ListNode* head) {
+        if (!head || !head-&gt;next) return head;
+
+    ListNode* odd = head;
+    ListNode* even = head-&gt;next;
+    ListNode* evenHead = even;
+
+    while (even &amp;&amp; even-&gt;next) {
+        odd-&gt;next = even-&gt;next;
+        odd = odd-&gt;next;
+        even-&gt;next = odd-&gt;next;
+        even = even-&gt;next;
+    }
+
+    odd-&gt;next = evenHead;
+    return head;
+}
+
+}; </pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Initialize odd at head and even at second node</li>
+  <li>Save evenHead to reconnect later</li>
+  <li>Link odd nodes together by skipping even nodes</li>
+  <li>Link even nodes together by skipping odd nodes</li>
+  <li>Append even list after odd list</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Indexing is based on position, not value</li>
+  <li>Do not create new nodes — only rewire pointers</li>
+  <li>Forgetting <code>evenHead</code> loses even list</li>
+  <li>Works correctly for both even and odd lengths</li>
+  <li>Single-node and two-node lists remain unchanged</li>
+</ul>
+`
+},
+{
+id: "19-remove-nth-node-from-end-of-list",
+title: "19. Remove Nth Node From End of List",
+content: `
+
+<h1>19. Remove Nth Node From End of List</h1>
+
+<p>Remove the nth node from the end of a singly linked list <strong>without using a dummy node</strong>.</p>
+
+<h2>Approach (Two Pointers):</h2>
+<ul>
+  <li>Use two pointers starting from head</li>
+  <li>Move <code>fast</code> pointer n steps ahead</li>
+  <li>If <code>fast</code> becomes null, the head itself must be removed</li>
+  <li>Otherwise move both pointers until <code>fast</code> reaches last node</li>
+  <li>Remove node after <code>slow</code></li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(n)</p>
+<p>Space: O(1)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode* fast = head;
+        ListNode* slow = head;
+
+    while (n--) {
+        fast = fast-&gt;next;
+    }
+
+    if (fast == nullptr) {
+        return head-&gt;next;
+    }
+
+    while (fast-&gt;next) {
+        fast = fast-&gt;next;
+        slow = slow-&gt;next;
+    }
+
+    slow-&gt;next = slow-&gt;next-&gt;next;
+    return head;
+}
+
+}; </pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Advance <code>fast</code> by n nodes to create a gap</li>
+  <li>If <code>fast</code> becomes null, target is the head</li>
+  <li>Move both pointers together until <code>fast</code> is at last node</li>
+  <li><code>slow</code> stops just before node to delete</li>
+  <li>Rewire <code>slow-&gt;next</code> to skip the target node</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>This version needs an explicit head-deletion check</li>
+  <li>Missing the <code>fast == nullptr</code> case causes runtime error</li>
+  <li>More error-prone than dummy approach but valid</li>
+  <li>Works in single pass</li>
+  <li>Be careful with off-by-one in fast movement</li>
+</ul>
+`
+},
+{
+id: "2095-delete-the-middle-node-of-a-linked-list",
+title: "2095. Delete the Middle Node of a Linked List",
+content: `
+
+<h1>2095. Delete the Middle Node of a Linked List</h1>
+
+<p>Delete the middle node of a singly linked list and return the modified list; if there are two middle nodes, delete the second one.</p>
+
+<h2>Approach (Fast and Slow Pointers):</h2>
+<ul>
+  <li>Handle single-node list separately</li>
+  <li>Use slow and fast pointers to locate middle</li>
+  <li>Maintain a previous pointer to track node before slow</li>
+  <li>Fast moves two steps, slow moves one step</li>
+  <li>Delete the node pointed by slow</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(n)</p>
+<p>Space: O(1)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    ListNode* deleteMiddle(ListNode* head) {
+        if (!head || !head-&gt;next) return nullptr;
+
+    ListNode* slow = head;
+    ListNode* fast = head;
+    ListNode* prev = nullptr;
+
+    while (fast &amp;&amp; fast-&gt;next) {
+        prev = slow;
+        slow = slow-&gt;next;
+        fast = fast-&gt;next-&gt;next;
+    }
+
+    prev-&gt;next = slow-&gt;next;
+    return head;
+}
+
+}; </pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Return null for single-node list</li>
+  <li>Use fast–slow pointers to reach middle</li>
+  <li><code>prev</code> tracks node before slow</li>
+  <li>Slow ends at middle node (second middle for even length)</li>
+  <li>Bypass the middle node</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Single-node list must return null</li>
+  <li>Even-length lists delete the second middle</li>
+  <li>Forgetting <code>prev</code> makes deletion impossible</li>
+  <li>Do not use extra passes to count length</li>
+  <li>One-pass solution is optimal</li>
+</ul>
+`
+},
+{
+id: "148-sort-list",
+title: "148. Sort List",
+content: `
+
+<h1>148. Sort List</h1>
+
+<p>Sort a singly linked list in ascending order with optimal time and space complexity.</p>
+
+<h2>Approach (Merge Sort on Linked List):</h2>
+<ul>
+  <li>Use slow–fast pointers to split the list into two halves</li>
+  <li>Recursively sort each half</li>
+  <li>Merge two sorted linked lists</li>
+  <li>Base case: empty list or single node</li>
+  <li>Avoid extra arrays to keep space minimal</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(n log n)</p>
+<p>Space: O(log n) (recursion stack, ignoring output)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>
+class Solution {
+public:
+    ListNode* merge(ListNode* l1, ListNode* l2) {
+        ListNode dummy(0);
+        ListNode* tail = &amp;dummy;
+        while (l1 &amp;&amp; l2) {
+            if (l1-&gt;val &lt;= l2-&gt;val) {
+                tail-&gt;next = l1;
+                l1 = l1-&gt;next;
+            } else {
+                tail-&gt;next = l2;
+                l2 = l2-&gt;next;
+            }
+            tail = tail-&gt;next;
+        }
+        tail-&gt;next = l1 ? l1 : l2;
+        return dummy.next;
+    }
+
+ListNode* sortList(ListNode* head) {
+    if (!head || !head-&gt;next) return head;
+    ListNode *slow = head, *fast = head-&gt;next;
+    while (fast &amp;&amp; fast-&gt;next) {
+        slow = slow-&gt;next;
+        fast = fast-&gt;next-&gt;next;
+    }
+    ListNode* mid = slow-&gt;next;
+    slow-&gt;next = nullptr;
+    return merge(sortList(head), sortList(mid));
+}
+
+}; </pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Find the middle using slow–fast pointers</li>
+  <li>Split the list into two halves</li>
+  <li>Recursively sort both halves</li>
+  <li>Merge two sorted lists using pointer manipulation</li>
+  <li>Return merged sorted list</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Not breaking the list properly causes infinite recursion</li>
+  <li>Using array-based sort violates space constraints</li>
+  <li>Always handle empty and single-node lists</li>
+  <li>Incorrect fast pointer initialization breaks mid finding</li>
+</ul>
+`
+},
+{
+id: "2-add-two-numbers",
+title: "2. Add Two Numbers",
+content: `
+
+<h1>2. Add Two Numbers</h1>
+
+<p>Add two non-negative integers represented by reversed linked lists and return the sum as a linked list.</p>
+
+<h2>Approach (Elementary Math with Carry):</h2>
+<ul>
+  <li>Traverse both lists simultaneously</li>
+  <li>Add corresponding digits along with carry</li>
+  <li>Store digit result as a new node</li>
+  <li>Update carry for next position</li>
+  <li>Continue until both lists and carry are exhausted</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(max(m, n))</p>
+<p>Space: O(max(m, n)) ignoring output</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode dummy(0);
+        ListNode* cur = &amp;dummy;
+        int carry = 0;
+
+    while (l1 || l2 || carry) {
+        int sum = carry;
+        if (l1) { sum += l1-&gt;val; l1 = l1-&gt;next; }
+        if (l2) { sum += l2-&gt;val; l2 = l2-&gt;next; }
+        carry = sum / 10;
+        cur-&gt;next = new ListNode(sum % 10);
+        cur = cur-&gt;next;
+    }
+    return dummy.next;
+}
+
+};</pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Dummy node simplifies head handling</li>
+  <li>Loop continues while digits or carry exist</li>
+  <li>Sum includes carry and current digits</li>
+  <li>New node stores current digit</li>
+  <li>Carry propagated to next iteration</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Lists of different lengths</li>
+  <li>Final carry creating an extra node</li>
+  <li>Do not modify input lists</li>
+  <li>Missing carry handling causes WA</li>
+</ul>
+`
+}
+
+
+
+
+
+
+
 
               ]
             }
