@@ -12,7 +12,7 @@ It is a continuously evolving learning log, built and refined while learning.
 
 ## 🌐 Live Website
 
-- **URL:** https://openlearning.publicvm.com  
+- **URL:** openlearny.in/  
 - **Hosting:** GitHub Pages (static deployment)
 
 ---
