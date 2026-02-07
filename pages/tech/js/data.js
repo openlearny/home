@@ -2220,6 +2220,223 @@ content: `
 
               ]
             },
+            "BIT MANIPULATION":{
+              "Introduction":[
+                {
+id: "introduction-to-bit-manipulation",
+title: "Introduction",
+content: `
+
+<h1>Introduction</h1>
+
+<p>Bit Manipulation is a technique that operates directly on binary representations of numbers using bitwise operators. It exists to solve problems more efficiently by exploiting low-level properties of integers instead of using loops, extra memory, or arithmetic-heavy logic.</p>
+
+<h2>When to Use:</h2>
+<ul>
+  <li>Problems involving parity, toggling, masking, or binary states</li>
+  <li>Constraints demand O(1) space or faster-than-linear solutions</li>
+  <li>Questions mentioning powers of two, XOR properties, or bit counts</li>
+  <li>Situations where frequency or uniqueness must be inferred without extra memory</li>
+</ul>
+
+<h2>Step-by-Step Logic:</h2>
+<ul>
+  <li>Represent numbers in binary form</li>
+  <li>Use bitwise operators to inspect or modify specific bits</li>
+  <li>Apply algebraic properties of XOR, AND, OR</li>
+  <li>Reduce problems by canceling or isolating bits</li>
+</ul>
+`
+},
+{
+id: "ones-complement-and-twos-complement",
+title: "Understanding One's Complement and Two's Complement",
+content: `
+
+<h1>Understanding One's Complement and Two's Complement</h1>
+
+<h2>One's Complement</h2>
+<p>The one's complement of a binary number is obtained by flipping all the bits.</p>
+
+<p>Example: The one's complement of 13 (binary 1101):</p>
+
+<p>Binary of 13     : 0000 1101</p>
+<p>One's Complement : 1111 0010</p>
+
+<h2>Two's Complement</h2>
+<p>The two's complement is obtained by taking the one's complement of a number and adding 1.</p>
+
+<p>Example: The two's complement of 13 (binary 1101):</p>
+
+<p>One's Complement : 1111 0010</p>
+<p>Add 1            : 1111 0011</p>
+`
+}
+
+              ],
+              "Binary Number Conversion":[
+                {
+id: "decimal-to-binary",
+title: "Decimal to Binary",
+content: `
+
+<h1>Decimal to Binary</h1>
+
+<p>Convert a decimal number to binary by repeatedly dividing by 2 and tracking remainders.</p>
+
+<h2>Steps</h2>
+<ol>
+  <li>Divide the number by 2.</li>
+  <li>Write down the remainder (0 or 1).</li>
+  <li>Replace the number with the quotient.</li>
+  <li>Repeat until the number becomes 0.</li>
+  <li>Read remainders from bottom to top.</li>
+</ol>
+
+<p>Example: Convert 13 to binary</p>
+
+<p>13 ÷ 2 = 6 remainder 1</p>
+<p>6  ÷ 2 = 3 remainder 0</p>
+<p>3  ÷ 2 = 1 remainder 1</p>
+<p>1  ÷ 2 = 0 remainder 1</p>
+
+<p>Read bottom → top: 1101</p>
+
+<p>So,</p>
+<p>13 (decimal) = 1101 (binary)</p>
+`
+},
+{
+id: "binary-to-decimal",
+title: "Binary to Decimal",
+content: `
+
+<h1>Binary to Decimal</h1>
+
+<p>Convert binary to decimal by multiplying each bit by powers of 2 based on its position.</p>
+
+<h2>Rule</h2>
+<p>From right to left:</p>
+<p>position starts at 0</p>
+<p>multiply each bit by 2^position and sum.</p>
+
+<p>Example: Convert 1101 to decimal</p>
+
+<p>1 × 2^0 = 1</p>
+<p>0 × 2^1 = 0</p>
+<p>1 × 2^2 = 4</p>
+<p>1 × 2^3 = 8</p>
+
+<p>Sum = 1 + 0 + 4 + 8 = 13</p>
+
+<p>So,</p>
+<p>1101 (binary) = 13 (decimal)</p>
+`
+}
+
+              ],
+              "Bitwise Operators":[
+                {
+id: "and-operator",
+title: "AND Operator (&)",
+content: `
+
+<h1>AND Operator (&)</h1>
+
+<p>If both corresponding bits are 1, the resulting bit is 1; otherwise, it is 0.</p>
+
+<p>13: 1101</p>
+<p> 7: 0111</p>
+<p>&amp;  : 0101 → 5</p>
+`
+},
+{
+id: "or-operator",
+title: "OR Operator (|)",
+content: `
+
+<h1>OR Operator (|)</h1>
+
+<p>If either corresponding bit is 1, the resulting bit is 1.</p>
+
+<p>13: 1101</p>
+<p> 7: 0111</p>
+<p>|  : 1111 → 15</p>
+`
+},
+{
+id: "xor-operator",
+title: "XOR Operator (^)",
+content: `
+
+<h1>XOR Operator (^)</h1>
+
+<p>If bits differ, the result is 1; if the same, result is 0.</p>
+
+<p>13: 1101</p>
+<p> 7: 0111</p>
+<p>^  : 1010 → 10</p>
+`
+},
+{
+id: "not-operator",
+title: "NOT Operator (~)",
+content: `
+
+<h1>NOT Operator (~)</h1>
+
+<p>Flips all bits of the number.</p>
+
+<p> 5: 0000 0101</p>
+<p>~5: 1111 1010 → -6 (in two's complement)</p>
+`
+},
+{
+id: "shift-operators",
+title: "Shift Operators",
+content: `
+
+<h1>Shift Operators</h1>
+
+<p>Right Shift (>>): Shifts bits to the right, fills left with 0s.</p>
+<p>13 >> 1 = 0110 → 6</p>
+
+<p>Left Shift (<<): Shifts bits to the left, fills right with 0s.</p>
+<p>13 << 1 = 11010 → 26</p>
+`
+}
+
+              ],
+              "Bit Manipulation Tricks and Techniques":[
+                {
+id: "bit-manipulation-tricks-and-techniques",
+title: "Bit Manipulation Tricks and Techniques",
+content: `
+
+<h1>Bit Manipulation Tricks and Techniques</h1>
+
+<h2>1. Swapping Two Numbers Without a Third Variable</h2>
+<p>A = A ^ B</p>
+<p>B = A ^ B</p>
+<p>A = A ^ B</p>
+
+<h2>2. Checking if the i-th Bit is Set</h2>
+<p>(1 << i) &amp; num   → set if result ≠ 0</p>
+<p>(num >> i) &amp; 1   → set if result ≠ 0</p>
+
+<h2>3. Setting the i-th Bit</h2>
+<p>num | (1 << i)</p>
+
+<h2>4. Clearing the i-th Bit</h2>
+<p>num &amp; ~(1 << i)</p>
+
+<h2>5. Toggling the i-th Bit</h2>
+<p>num ^ (1 << i)</p>
+`
+}
+
+              ]
+            },
 
             "ARRAYS PROBLEMS":{
       "Easy" : [
@@ -5237,11 +5454,321 @@ public:
   <li>Missing carry handling causes WA</li>
 </ul>
 `
+},
+{
+id: "61-rotate-list",
+title: "61. Rotate List",
+content: `
+
+<h1>61. Rotate List</h1>
+
+<p>Rotate a singly linked list to the right by k places.</p>
+
+<h2>Approach (Linked List Cycle + Modulo Reduction):</h2>
+<ul>
+  <li>Handle empty list, single node, or k = 0 early</li>
+  <li>Compute length of the list</li>
+  <li>Reduce k using k % length</li>
+  <li>Connect tail to head to form a cycle</li>
+  <li>Break the cycle at the correct new tail position</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(n)</p>
+<p>Space: O(1)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    ListNode* rotateRight(ListNode* head, int k) {
+        if (!head || !head-&gt;next || k == 0) return head;
+
+    int len = 1;
+    ListNode* tail = head;
+    while (tail-&gt;next) {
+        tail = tail-&gt;next;
+        len++;
+    }
+
+    k %= len;
+    if (k == 0) return head;
+
+    tail-&gt;next = head;
+    int steps = len - k;
+    ListNode* newTail = head;
+    while (--steps) {
+        newTail = newTail-&gt;next;
+    }
+
+    ListNode* newHead = newTail-&gt;next;
+    newTail-&gt;next = nullptr;
+    return newHead;
+}
+
+};</pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Return early for trivial cases</li>
+  <li>Traverse list to find length and tail</li>
+  <li>Reduce unnecessary rotations using modulo</li>
+  <li>Form a circular list by linking tail to head</li>
+  <li>Find new tail and break the cycle to get new head</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Forgetting k % length causes TLE</li>
+  <li>Not handling k = 0 leads to wrong answer</li>
+  <li>Breaking the cycle at wrong node shifts list incorrectly</li>
+  <li>Single-node list must be returned as-is</li>
+</ul>
+`
+},
+{
+id: "138-copy-list-with-random-pointer",
+title: "138. Copy List with Random Pointer",
+content: `
+
+<h1>138. Copy List with Random Pointer</h1>
+
+<p>Create a deep copy of a linked list where each node has a next pointer and a random pointer.</p>
+
+<h2>Approach (In-Place Node Weaving):</h2>
+<ul>
+  <li>Insert cloned nodes immediately after their original nodes</li>
+  <li>Use original.random.next to assign cloned random pointers</li>
+  <li>Separate the interleaved list into original and cloned lists</li>
+  <li>Avoid extra hash maps by exploiting adjacency</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(n)</p>
+<p>Space: O(1)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    Node* copyRandomList(Node* head) {
+        if (!head) return nullptr;
+
+    Node* cur = head;
+    while (cur) {
+        Node* copy = new Node(cur->val);
+        copy->next = cur->next;
+        cur->next = copy;
+        cur = copy->next;
+    }
+
+    cur = head;
+    while (cur) {
+        if (cur->random)
+            cur->next->random = cur->random->next;
+        cur = cur->next->next;
+    }
+
+    Node* dummy = new Node(0);
+    Node* copyCur = dummy;
+    cur = head;
+
+    while (cur) {
+        copyCur->next = cur->next;
+        cur->next = cur->next->next;
+        copyCur = copyCur->next;
+        cur = cur->next;
+    }
+
+    return dummy->next;
+}
+
+};</pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Interleave copied nodes between original nodes</li>
+  <li>Set random pointers using original.random.next</li>
+  <li>Extract copied list while restoring original list</li>
+  <li>Return head of the deep-copied list</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Using hashmap is correct but violates O(1) space expectation</li>
+  <li>Missing random null check causes runtime error</li>
+  <li>Forgetting to restore original list corrupts input</li>
+  <li>Traversal must jump two nodes at a time</li>
+</ul>
+`
 }
 
 
 
 
+              ]
+            },
+            "BIT MANIPULATION PROBLEMS":{
+              "Easy":[
+                {
+id: "231-power-of-two",
+title: "231. Power of Two",
+content: `
+
+<h1>231. Power of Two</h1>
+
+<p>Determine whether a given integer is a power of two.</p>
+
+<h2>Approach (Bit Manipulation):</h2>
+<ul>
+  <li>Power of two has exactly one set bit in binary</li>
+  <li>For n &gt; 0, n &amp; (n − 1) clears the lowest set bit</li>
+  <li>If result becomes zero, only one bit was set</li>
+  <li>Reject zero and negative numbers explicitly</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(1)</p>
+<p>Space: O(1)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    bool isPowerOfTwo(int n) {
+        return n &gt; 0 &amp;&amp; (n &amp; (n - 1)) == 0;
+    }
+};</pre>
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Check positivity to exclude zero and negatives</li>
+  <li>Use bit trick to remove lowest set bit</li>
+  <li>Validate that no other bits remain</li>
+  <li>Return boolean result directly</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>n = 0 must return false</li>
+  <li>Negative numbers are not powers of two</li>
+  <li>Using log or loops is unnecessary and slower</li>
+  <li>Bitwise solution is constant-time and exact</li>
+</ul>
+`
+},
+{
+id: "2220-minimum-bit-flips-to-convert-number",
+title: "2220. Minimum Bit Flips to Convert Number",
+content: `
+
+<h1>2220. Minimum Bit Flips to Convert Number</h1>
+
+<p>Return the minimum number of bit flips required to convert integer start into integer goal.</p>
+
+<h2>Approach (Bit Manipulation – XOR + Brian Kernighan’s Algorithm):</h2>
+<ul>
+  <li>XOR start and goal to identify differing bits</li>
+  <li>Each set bit in XOR represents one required flip</li>
+  <li>Repeatedly remove the lowest set bit using n &amp; (n − 1)</li>
+  <li>Count how many times bits are removed</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(number of set bits)</p>
+<p>Space: O(1)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int minBitFlips(int start, int goal) {
+        int x = start ^ goal;
+        int cnt = 0;
+        while (x) {
+            x &amp;= (x - 1);
+            cnt++;
+        }
+        return cnt;
+    }
+};
+</pre>
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>XOR computes positions where bits differ</li>
+  <li>Loop runs once per set bit in XOR</li>
+  <li>n &amp; (n − 1) clears the lowest set bit</li>
+  <li>Counter tracks total flips required</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Loop complexity depends on number of differing bits, not 32</li>
+  <li>Works correctly for all non-negative integers</li>
+  <li>Avoids built-in functions for interview constraints</li>
+  <li>Zero XOR means numbers are already equal</li>
+</ul>
+`
+},
+{
+id: "136-single-number",
+title: "136. Single Number",
+content: `
+
+<h1>136. Single Number</h1>
+
+<p>Find the element that appears exactly once when every other element appears twice.</p>
+
+<h2>Approach (Bit Manipulation – XOR):</h2>
+<ul>
+  <li>XOR of a number with itself becomes zero</li>
+  <li>XOR of a number with zero remains unchanged</li>
+  <li>XOR operation is associative and commutative</li>
+  <li>XOR all elements to cancel out duplicates</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(n)</p>
+<p>Space: O(1)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int singleNumber(vector&lt;int&gt;&amp; nums) {
+        int x = 0;
+        for (int n : nums) {
+            x ^= n;
+        }
+        return x;
+    }
+};</pre>
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Initialize accumulator with zero</li>
+  <li>XOR each array element into accumulator</li>
+  <li>Duplicate elements cancel each other</li>
+  <li>Remaining value is the unique element</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Works only when every duplicate appears exactly twice</li>
+  <li>Order of elements does not matter</li>
+  <li>No extra memory or sorting needed</li>
+  <li>Handles negative numbers correctly</li>
+</ul>
+`
+}
 
 
 
