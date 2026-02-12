@@ -2441,6 +2441,70 @@ content: `
             "ARRAYS PROBLEMS":{
       "Easy" : [
         {
+id: "1752-check-if-array-is-sorted-and-rotated",
+title: "1752. Check if Array Is Sorted and Rotated",
+content: ` <h1>1752. Check if Array Is Sorted and Rotated</h1> <p>Check whether an array is non-decreasing and possibly rotated some number of times.</p>
+
+
+<h2>Approach (Circular Array + Inversion Counting Technique):</h2>
+<ul>
+  <li>Count positions where nums[i] &gt; nums[(i+1)%n]</li>
+  <li>Use modulo to treat array as circular</li>
+  <li>Valid sorted-rotated array has at most one such inversion</li>
+  <li>If inversions ≤ 1 → return true</li>
+  <li>Otherwise → return false</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(n)</p>
+<p>Space: O(1)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>class Solution {
+
+
+public:
+bool check(vector<int>& nums) {
+int n = nums.size();
+int count = 0;
+
+
+    for(int i = 0; i &lt; n; i++) {
+        if(nums[i] &gt; nums[(i + 1) % n]) {
+            count++;
+        }
+    }
+    
+    return count &lt;= 1;
+}
+
+
+};</pre> </div>
+
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Iterate through entire array including circular comparison</li>
+  <li>Compare each element with next using modulo</li>
+  <li>Increment count when order decreases</li>
+  <li>If more than one decrease found, array cannot be sorted-rotated</li>
+  <li>Return whether count is at most one</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Must compare last element with first using modulo</li>
+  <li>Duplicates are allowed (non-decreasing, not strictly increasing)</li>
+  <li>Single element array is always valid</li>
+  <li>Strictly sorted array (no rotation) also returns true</li>
+  <li>More than one drop means multiple disorder points → invalid</li>
+</ul>
+
+
+`
+},
+        {
 id: "88-merge-sorted-array",
 title: "88. Merge Sorted Array",
 content: `
