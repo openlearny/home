@@ -5838,6 +5838,350 @@ public:
 
 
               ]
+            },
+            "STACK AND QUEUES PROBLEMS": {
+              "Easy": [
+                {
+id: "225-implement-stack-using-queues",
+title: "225. Implement Stack using Queues",
+content: ` <h1>225. Implement Stack using Queues</h1> <p>Implement a LIFO stack using only queue operations.</p>
+
+
+<h2>Approach (Single Queue Rotation Technique):</h2>
+<ul>
+  <li>Use one queue to simulate stack behavior</li>
+  <li>Push element into queue</li>
+  <li>Rotate previous elements to back to maintain LIFO order</li>
+  <li>Pop and Top operate on front of queue</li>
+  <li>Empty checks queue size</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time:</p>
+<p>Push: O(n)</p>
+<p>Pop: O(1)</p>
+<p>Top: O(1)</p>
+<p>Space: O(n)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>#include &lt;bits/stdc++.h&gt;
+
+
+using namespace std;
+
+class MyStack {
+private:
+queue &lt;int&gt; q;
+
+public:
+MyStack() {}
+
+
+void push(int x) {
+    q.push(x);
+    int sz = q.size();
+    while (sz &gt; 1) {
+        q.push(q.front());
+        q.pop();
+        sz--;
+    }
+}
+
+int pop() {
+    int val = q.front();
+    q.pop();
+    return val;
+}
+
+int top() {
+    return q.front();
+}
+
+bool empty() {
+    return q.empty();
+}
+
+
+};</pre> </div>
+
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Push inserts element and rotates earlier elements behind it</li>
+  <li>Rotation ensures newest element stays at front</li>
+  <li>Pop removes front element which represents stack top</li>
+  <li>Top returns front element without removing</li>
+  <li>Empty checks whether queue is empty</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Rotation count must be size-1, not size</li>
+  <li>Do not create local queue inside constructor</li>
+  <li>pop() must store front before removing</li>
+  <li>Works only because queue preserves FIFO order consistently</li>
+</ul>
+
+
+`
+},
+{
+id: "232-implement-queue-using-stacks",
+title: "232. Implement Queue using Stacks",
+content: ` <h1>232. Implement Queue using Stacks</h1> <p>Implement a FIFO queue using only stack operations.</p>
+
+
+<h2>Approach (Two Stack Amortized Technique):</h2>
+<ul>
+  <li>Use one stack (in) for push operations</li>
+  <li>Use second stack (out) for pop and peek operations</li>
+  <li>When out is empty, transfer all elements from in to out</li>
+  <li>Transfer reverses order to maintain FIFO</li>
+  <li>Each element moves at most once between stacks</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time:</p>
+<p>Push: O(1)</p>
+<p>Pop: Amortized O(1)</p>
+<p>Peek: Amortized O(1)</p>
+<p>Space: O(n)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>#include &lt;bits/stdc++.h&gt;
+
+
+using namespace std;
+
+class MyQueue {
+private:
+stack &lt;int&gt; inStack, outStack;
+
+
+void transfer() {
+    while (!inStack.empty()) {
+        outStack.push(inStack.top());
+        inStack.pop();
+    }
+}
+
+
+public:
+MyQueue() {}
+
+
+void push(int x) {
+    inStack.push(x);
+}
+
+int pop() {
+    if (outStack.empty()) {
+        transfer();
+    }
+    int val = outStack.top();
+    outStack.pop();
+    return val;
+}
+
+int peek() {
+    if (outStack.empty()) {
+        transfer();
+    }
+    return outStack.top();
+}
+
+bool empty() {
+    return inStack.empty() && outStack.empty();
+}
+
+
+};</pre> </div>
+
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Push always inserts into inStack</li>
+  <li>Transfer moves elements to outStack reversing order</li>
+  <li>Pop removes top of outStack which represents queue front</li>
+  <li>Peek returns top of outStack without removing</li>
+  <li>Empty checks both stacks</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Do not transfer every time; only when outStack is empty</li>
+  <li>Each element is transferred at most once → amortized O(1)</li>
+  <li>Forgetting empty check before transfer causes errors</li>
+  <li>Always check outStack first for pop/peek operations</li>
+</ul>
+
+
+`
+},
+{
+id: "20-valid-parentheses",
+title: "20. Valid Parentheses",
+content: ` <h1>20. Valid Parentheses</h1> <p>Check whether a string of brackets is valid by ensuring correct order and matching pairs.</p>
+
+
+<h2>Approach (Stack Matching Technique):</h2>
+<ul>
+  <li>Use stack to track opening brackets</li>
+  <li>Push opening brackets onto stack</li>
+  <li>On closing bracket, check top for matching type</li>
+  <li>If mismatch or stack empty → invalid</li>
+  <li>Valid if stack empty at end</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(n)</p>
+<p>Space: O(n)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>#include &lt;bits/stdc++.h&gt;
+
+
+using namespace std;
+
+class Solution {
+public:
+bool isValid(string s) {
+stack&lt;char&gt; st;
+
+
+    for (char c : s) {
+        if (c == '(' || c == '{' || c == '[') {
+            st.push(c);
+        } else {
+            if (st.empty()) return false;
+            
+            char top = st.top();
+            st.pop();
+            
+            if ((c == ')' &amp;&amp; top != '(') ||
+                (c == '}' &amp;&amp; top != '{') ||
+                (c == ']' &amp;&amp; top != '[')) {
+                return false;
+            }
+        }
+    }
+    
+    return st.empty();
+}
+
+
+};</pre> </div>
+
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Iterate through each character in string</li>
+  <li>Push opening brackets into stack</li>
+  <li>On closing bracket, check stack empty condition</li>
+  <li>Compare popped element with expected matching bracket</li>
+  <li>Return true only if stack is empty after traversal</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Odd length string can never be valid</li>
+  <li>Must check stack empty before accessing top</li>
+  <li>Extra opening brackets at end → invalid</li>
+  <li>Closing bracket appearing first → invalid</li>
+</ul>
+
+
+`
+}
+
+
+
+              ],
+              "Medium": [
+                {
+id: "155-min-stack",
+title: "155. Min Stack",
+content: ` <h1>155. Min Stack</h1> <p>Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.</p>
+
+
+<h2>Approach (Single Stack with Pair Technique):</h2>
+<ul>
+  <li>Store pair {value, currentMin} in one stack</li>
+  <li>For each push, compute min(val, previousMin)</li>
+  <li>First element stores itself as minimum</li>
+  <li>Pop removes both value and its associated minimum</li>
+  <li>getMin reads second element of top pair</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(1) per operation</p>
+<p>Space: O(n)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>#include &lt;bits/stdc++.h&gt;
+
+
+using namespace std;
+
+class MinStack {
+private:
+stack&lt;pair&lt;long long, long long>&gt; st;
+
+public:
+MinStack() {}
+
+
+void push(int val) {
+    if (st.empty()) {
+        st.push({val, val});
+    } else {
+        long long currentMin = min((long long)val, st.top().second);
+        st.push({val, currentMin});
+    }
+}
+
+void pop() {
+    st.pop();
+}
+
+int top() {
+    return st.top().first;
+}
+
+int getMin() {
+    return st.top().second;
+}
+
+
+};</pre> </div>
+
+
+<h2>Code Explanation:</h2>
+<ul>
+  <li>Stack stores both element and minimum till that point</li>
+  <li>On push, compute new minimum using previous top</li>
+  <li>First push initializes minimum as value itself</li>
+  <li>Pop removes the top pair directly</li>
+  <li>getMin returns stored minimum from top pair</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+  <li>Must store previous minimum in each node</li>
+  <li>Avoid computing min by scanning stack</li>
+  <li>Works correctly with duplicate minimums</li>
+  <li>No extra stack required, but memory per element increases</li>
+</ul>
+
+
+`
+}
+
+              ]
             }
             
         }
