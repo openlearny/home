@@ -5832,7 +5832,56 @@ public:
   <li>Handles negative numbers correctly</li>
 </ul>
 `
+},
+{
+id: "190-reverse-bits",
+title: "190. Reverse Bits",
+content: `<h1>190. Reverse Bits</h1>
+
+<p>Reverse the bits of a given 32-bit unsigned integer.</p>
+<h2>Approach (Bit Manipulation – Iterative Bit Reversal):</h2>
+<ul>
+<li>Extract the last bit using <code>n &amp; 1</code></li>
+<li>Left shift result to make space for next bit</li>
+<li>Append extracted bit using bitwise OR</li>
+<li>Right shift original number to process next bit</li>
+<li>Repeat exactly 32 times</li>
+</ul>
+<h2>Complexity:</h2>
+<p>Time: O(1)</p>
+<p>Space: O(1)</p>
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int reverseBits(int n) {
+        unsigned int num = n;
+        int ans = 0;
+        for(int i = 0; i &lt; 32; i++) {
+            ans = (ans &lt;&lt; 1) | (num &amp; 1);
+            num &gt;&gt;= 1;
+        }
+        return ans;
+    }
+};</pre>
+</div>
+<h2>Code Explanation:</h2>
+<ul>
+<li>Store input in unsigned int to avoid sign-extension during right shift</li>
+<li>Initialize ans as 0</li>
+<li>Iterate 32 times to process all bits</li>
+<li>Shift ans left and append last bit of num</li>
+<li>Right shift num to move to next bit</li>
+</ul>
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+<li>Directly shifting signed negative numbers causes arithmetic shift issues</li>
+<li>Must iterate full 32 times even if value becomes 0</li>
+<li>Result may be negative due to MSB becoming 1</li>
+<li>Behavior depends on 32-bit int assumption</li>
+</ul>`
 }
+
 
 
 
@@ -6095,7 +6144,76 @@ stack&lt;char&gt; st;
 
 
 `
+},
+{
+id: "496-next-greater-element-i",
+title: "496. Next Greater Element I",
+content: `<h1>496. Next Greater Element I</h1>
+
+<p>For each element in nums1, find the next greater element in nums2.</p>
+<h2>Approach (Monotonic Stack – Next Greater Element Pattern):</h2>
+<ul>
+<li>Traverse nums2 and maintain a decreasing monotonic stack</li>
+<li>When current element is greater than stack top, resolve NGE for stack elements</li>
+<li>Store mapping from element → next greater in unordered_map</li>
+<li>For remaining stack elements, NGE is -1</li>
+<li>Build result for nums1 using the map</li>
+</ul>
+<h2>Complexity:</h2>
+<p>Time: O(n + m)</p>
+<p>Space: O(n)</p>
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    vector&lt;int&gt; nextGreaterElement(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) {
+        unordered_map&lt;int, int&gt; mp;
+        stack&lt;int&gt; st;
+
+
+    for (int num : nums2) {
+        while (!st.empty() &amp;&amp; st.top() &lt; num) {
+            mp[st.top()] = num;
+            st.pop();
+        }
+        st.push(num);
+    }
+    
+    while (!st.empty()) {
+        mp[st.top()] = -1;
+        st.pop();
+    }
+    
+    vector&lt;int&gt; ans;
+    for (int num : nums1) {
+        ans.push_back(mp[num]);
+    }
+    
+    return ans;
 }
+
+
+};</pre>
+
+</div>
+<h2>Code Explanation:</h2>
+<ul>
+<li>Use stack to keep elements whose NGE is not yet found</li>
+<li>While current number is greater than stack top, assign NGE</li>
+<li>Push current number into stack</li>
+<li>Remaining elements in stack do not have any greater element</li>
+<li>Use stored mapping to construct final answer</li>
+</ul>
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+<li>Stack must be strictly decreasing</li>
+<li>Mapping is from value to value, not index</li>
+<li>nums1 is guaranteed subset of nums2</li>
+<li>Forgetting to assign -1 for remaining elements causes WA</li>
+<li>Do not use nested loops → leads to O(n²) TLE</li>
+</ul>`
+}
+
 
 
 
