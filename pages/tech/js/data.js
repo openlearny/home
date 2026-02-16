@@ -5832,7 +5832,56 @@ public:
   <li>Handles negative numbers correctly</li>
 </ul>
 `
+},
+{
+id: "190-reverse-bits",
+title: "190. Reverse Bits",
+content: `<h1>190. Reverse Bits</h1>
+
+<p>Reverse the bits of a given 32-bit unsigned integer.</p>
+<h2>Approach (Bit Manipulation – Iterative Bit Reversal):</h2>
+<ul>
+<li>Extract the last bit using <code>n &amp; 1</code></li>
+<li>Left shift result to make space for next bit</li>
+<li>Append extracted bit using bitwise OR</li>
+<li>Right shift original number to process next bit</li>
+<li>Repeat exactly 32 times</li>
+</ul>
+<h2>Complexity:</h2>
+<p>Time: O(1)</p>
+<p>Space: O(1)</p>
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int reverseBits(int n) {
+        unsigned int num = n;
+        int ans = 0;
+        for(int i = 0; i &lt; 32; i++) {
+            ans = (ans &lt;&lt; 1) | (num &amp; 1);
+            num &gt;&gt;= 1;
+        }
+        return ans;
+    }
+};</pre>
+</div>
+<h2>Code Explanation:</h2>
+<ul>
+<li>Store input in unsigned int to avoid sign-extension during right shift</li>
+<li>Initialize ans as 0</li>
+<li>Iterate 32 times to process all bits</li>
+<li>Shift ans left and append last bit of num</li>
+<li>Right shift num to move to next bit</li>
+</ul>
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+<li>Directly shifting signed negative numbers causes arithmetic shift issues</li>
+<li>Must iterate full 32 times even if value becomes 0</li>
+<li>Result may be negative due to MSB becoming 1</li>
+<li>Behavior depends on 32-bit int assumption</li>
+</ul>`
 }
+
 
 
 
