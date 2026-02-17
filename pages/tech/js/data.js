@@ -5880,7 +5880,74 @@ public:
 <li>Result may be negative due to MSB becoming 1</li>
 <li>Behavior depends on 32-bit int assumption</li>
 </ul>`
+},
+{
+id: "401-binary-watch",
+title: "401. Binary Watch",
+content: `
+
+<h1>401. Binary Watch</h1>
+<p>Return all possible times the watch could represent with exactly \`turnedOn\` LEDs on.</p>
+
+<h2>Approach (Backtracking – Generate Valid Time Combinations):</h2>
+<ul>
+<li>Represent hours (0–11) using 4 bits and minutes (0–59) using 6 bits</li>
+<li>Iterate all possible hour and minute combinations</li>
+<li>Count total set bits using builtin bit count</li>
+<li>If total set bits equals turnedOn, format time string</li>
+<li>Ensure minute is zero-padded to 2 digits</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(12 × 60)</p>
+<p>Space: O(1) ignoring output</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    vector&lt;string&gt; readBinaryWatch(int turnedOn) {
+        vector&lt;string&gt; ans;
+
+
+    for (int h = 0; h &lt; 12; h++) {
+        for (int m = 0; m &lt; 60; m++) {
+            if (__builtin_popcount(h) + __builtin_popcount(m) == turnedOn) {
+                string time = to_string(h) + &quot;:&quot;;
+                if (m &lt; 10) time += &quot;0&quot;;
+                time += to_string(m);
+                ans.push_back(time);
+            }
+        }
+    }
+    
+    return ans;
 }
+
+
+};</pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+<li>Loop through all valid hour values from 0 to 11</li>
+<li>Loop through all valid minute values from 0 to 59</li>
+<li>Use builtin popcount to count total set bits in hour and minute</li>
+<li>If total equals turnedOn, construct formatted time string</li>
+<li>Append valid formatted time to result vector</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+<li>Hours must be &lt; 12 and minutes must be &lt; 60</li>
+<li>Minute must always be two digits (leading zero required)</li>
+<li>turnedOn can be 0 → result is only &quot;0:00&quot;</li>
+<li>If turnedOn &gt; 10, result is empty since total LEDs = 10</li>
+</ul>
+`
+}
+
 
 
 
