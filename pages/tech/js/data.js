@@ -5880,7 +5880,74 @@ public:
 <li>Result may be negative due to MSB becoming 1</li>
 <li>Behavior depends on 32-bit int assumption</li>
 </ul>`
+},
+{
+id: "401-binary-watch",
+title: "401. Binary Watch",
+content: `
+
+<h1>401. Binary Watch</h1>
+<p>Return all possible times the watch could represent with exactly \`turnedOn\` LEDs on.</p>
+
+<h2>Approach (Backtracking – Generate Valid Time Combinations):</h2>
+<ul>
+<li>Represent hours (0–11) using 4 bits and minutes (0–59) using 6 bits</li>
+<li>Iterate all possible hour and minute combinations</li>
+<li>Count total set bits using builtin bit count</li>
+<li>If total set bits equals turnedOn, format time string</li>
+<li>Ensure minute is zero-padded to 2 digits</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(12 × 60)</p>
+<p>Space: O(1) ignoring output</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    vector&lt;string&gt; readBinaryWatch(int turnedOn) {
+        vector&lt;string&gt; ans;
+
+
+    for (int h = 0; h &lt; 12; h++) {
+        for (int m = 0; m &lt; 60; m++) {
+            if (__builtin_popcount(h) + __builtin_popcount(m) == turnedOn) {
+                string time = to_string(h) + &quot;:&quot;;
+                if (m &lt; 10) time += &quot;0&quot;;
+                time += to_string(m);
+                ans.push_back(time);
+            }
+        }
+    }
+    
+    return ans;
 }
+
+
+};</pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+<li>Loop through all valid hour values from 0 to 11</li>
+<li>Loop through all valid minute values from 0 to 59</li>
+<li>Use builtin popcount to count total set bits in hour and minute</li>
+<li>If total equals turnedOn, construct formatted time string</li>
+<li>Append valid formatted time to result vector</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+<li>Hours must be &lt; 12 and minutes must be &lt; 60</li>
+<li>Minute must always be two digits (leading zero required)</li>
+<li>turnedOn can be 0 → result is only &quot;0:00&quot;</li>
+<li>If turnedOn &gt; 10, result is empty since total LEDs = 10</li>
+</ul>
+`
+}
+
 
 
 
@@ -6297,7 +6364,179 @@ int getMin() {
 
 
 `
+},
+{
+id: "503-next-greater-element-ii",
+title: "503. Next Greater Element II",
+content: `
+
+<h1>503. Next Greater Element II</h1>
+<p>Find the next greater element for each element in a circular array.</p>
+
+<h2>Approach (Monotonic Stack (Decreasing Stack) + Circular Traversal):</h2>
+<ul>
+<li>Use a monotonic decreasing stack to maintain indices of unresolved elements</li>
+<li>Traverse the array twice (simulate circular nature using i % n)</li>
+<li>While current element is greater than stack top element, resolve its answer</li>
+<li>Push index only during first pass to avoid duplicates</li>
+<li>Initialize result array with -1</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(n)</p>
+<p>Space: O(n)</p>
+
+<h2>C++ Reference Code:</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    vector&lt;int&gt; nextGreaterElements(vector&lt;int&gt;&amp; nums) {
+        int n = nums.size();
+        vector&lt;int&gt; ans(n, -1);
+        stack&lt;int&gt; st;
+
+    for(int i = 0; i &lt; 2 * n; i++) {
+        int num = nums[i % n];
+        
+        while(!st.empty() &amp;&amp; nums[st.top()] &lt; num) {
+            ans[st.top()] = num;
+            st.pop();
+        }
+        
+        if(i &lt; n) {
+            st.push(i);
+        }
+    }
+    
+    return ans;
 }
+
+};</pre>
+
+</div>
+
+<h2>Code Explanation:</h2>
+<ul>
+<li>Initialize answer array with -1 and an empty stack of indices</li>
+<li>Traverse from 0 to 2n-1 to simulate circular array</li>
+<li>Use modulo to access elements circularly</li>
+<li>Resolve elements in stack when a greater element is found</li>
+<li>Push indices only in first n iterations</li>
+</ul>
+
+<h2>Key Insights / Edge Cases:</h2>
+<ul>
+<li>Forgetting circular traversal causes wrong answers</li>
+<li>Pushing indices in second pass leads to duplicates and incorrect results</li>
+<li>Must compare using nums[st.top()] not st.top()</li>
+<li>Strictly use decreasing stack; otherwise complexity becomes O(n²)</li>
+</ul>
+`
+},
+{
+id: "42-trapping-rain-water",
+title: "42. Trapping Rain Water",
+content: `
+
+<h1>42. Trapping Rain Water</h1>
+<p>Given elevation map heights, compute total water trapped after raining.</p>
+
+<h2>Approach 1 (Two Pointers Technique):</h2>
+<ul>
+<li>Maintain two pointers: left and right</li>
+<li>Track leftMax and rightMax dynamically</li>
+<li>Move pointer with smaller height inward</li>
+<li>If current height &lt; max on that side, add (max − height)</li>
+<li>Continue until pointers cross</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(n)</p>
+<p>Space: O(1)</p>
+
+<h2>C++ Reference Code (Two Pointers):</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int trap(vector&lt;int&gt;&amp; height) {
+        int n = height.size();
+        int left = 0, right = n - 1;
+        int leftMax = 0, rightMax = 0;
+        int water = 0;
+
+
+    while(left &lt;= right) {
+        if(height[left] &lt;= height[right]) {
+            if(height[left] &gt;= leftMax)
+                leftMax = height[left];
+            else
+                water += leftMax - height[left];
+            left++;
+        } else {
+            if(height[right] &gt;= rightMax)
+                rightMax = height[right];
+            else
+                water += rightMax - height[right];
+            right--;
+        }
+    }
+    return water;
+}
+
+
+};</pre>
+
+</div>
+
+<h2>Approach 2 (Monotonic Stack):</h2>
+<ul>
+<li>Maintain stack of indices in decreasing height order</li>
+<li>When current height &gt; stack top, boundary is found</li>
+<li>Pop middle bar and calculate trapped water</li>
+<li>Width = current_index − left_boundary − 1</li>
+<li>Water = width × (min(left_height, right_height) − middle_height)</li>
+</ul>
+
+<h2>Complexity:</h2>
+<p>Time: O(n)</p>
+<p>Space: O(n)</p>
+
+<h2>C++ Reference Code (Stack):</h2>
+<div class="code-block">
+  <pre>class Solution {
+public:
+    int trap(vector&lt;int&gt;&amp; height) {
+        int n = height.size();
+        stack&lt;int&gt; st;
+        int water = 0;
+
+
+    for(int i = 0; i &lt; n; i++) {
+        while(!st.empty() &amp;&amp; height[i] &gt; height[st.top()]) {
+            int mid = st.top();
+            st.pop();
+
+            if(st.empty()) break;
+
+            int left = st.top();
+            int width = i - left - 1;
+            int boundedHeight = min(height[left], height[i]) - height[mid];
+
+            water += width * boundedHeight;
+        }
+        st.push(i);
+    }
+    return water;
+}
+
+
+};</pre>
+
+</div>
+`
+}
+
+
 
               ]
             }
